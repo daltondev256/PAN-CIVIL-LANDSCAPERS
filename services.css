@@ -1,0 +1,467 @@
+/* ==========================================================================
+   1. Theme Variables & Base Resets
+   ========================================================================== */
+:root {
+    --primary-forest: #1b3a1b;
+    --accent-lime: #76c720;
+    --bg-light: #fbfdf9;
+    --card-bg: #ffffff;
+    --text-dark: #2c3e2c;
+    --text-muted: #667566;
+    --border-line: #e6ebe6;
+    --font-stack: 'Poppins', sans-serif;
+    --shadow-card: 0 4px 25px rgba(27, 58, 27, 0.04);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   2. Header & Sticky Navbar
+   ========================================================================== */
+.main-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.logo-area h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-forest);
+}
+
+.logo-area .accent-text {
+    color: var(--accent-lime);
+}
+
+.logo-area .tagline {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-btn {
+    text-decoration: none;
+    color: var(--primary-forest);
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    color: var(--accent-lime);
+}
+
+.cta-btn {
+    background-color: var(--primary-forest);
+    color: #ffffff !important;
+}
+
+.cta-btn:hover {
+    background-color: var(--accent-lime);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   3. Services Hero Banner
+   ========================================================================== */
+.services-hero {
+    background: linear-gradient(rgba(27, 58, 27, 0.8), rgba(27, 58, 27, 0.95)), url('https://unsplash.com') center/cover;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+}
+
+.hero-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.sub-title {
+    color: var(--accent-lime);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   4. Category Filtering & Service Cards
+   ========================================================================== */
+.services-catalog-section {
+    padding: 60px 0;
+}
+
+.filter-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 45px;
+    flex-wrap: wrap;
+}
+
+.filter-tab {
+    background-color: #ffffff;
+    border: 1px solid var(--border-line);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-family: var(--font-stack);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-tab.active,
+.filter-tab:hover {
+    background-color: var(--primary-forest);
+    color: #ffffff;
+    border-color: var(--primary-forest);
+    box-shadow: 0 4px 12px rgba(27, 58, 27, 0.15);
+}
+
+/* Service Grid & Cards */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid var(--border-line);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(27, 58, 27, 0.08);
+    border-color: var(--accent-lime);
+}
+
+.card-icon-header {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(118, 199, 32, 0.1);
+    color: var(--primary-forest);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 1.15rem;
+    color: var(--primary-forest);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.card-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.service-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-line);
+    padding-top: 15px;
+}
+
+.price-indicator {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-forest);
+}
+
+.learn-more-btn {
+    background: none;
+    border: none;
+    color: var(--accent-lime);
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-family: var(--font-stack);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: var(--transition);
+}
+
+.learn-more-btn:hover {
+    gap: 8px;
+    color: var(--primary-forest);
+}
+
+/* ==========================================================================
+   5. Interactive FAQ Accordion Layout
+   ========================================================================== */
+.faq-section {
+    background-color: #f4f7f4;
+    padding: 60px 20px;
+}
+
+.faq-container {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.6rem;
+    color: var(--primary-forest);
+}
+
+.divider {
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-lime);
+    margin: 10px auto 35px;
+}
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid var(--border-line);
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 18px 25px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: var(--font-stack);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--primary-forest);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+    background-color: #fafbfa;
+}
+
+.faq-answer p {
+    padding: 0 25px 20px 25px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+    color: var(--accent-lime);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
+}
+
+/* ==========================================================================
+   6. Modal Layer Overlay Interface
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(19, 42, 19, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 2000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-box {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    transform: translateY(-30px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-box {
+    transform: translateY(0);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #999;
+}
+
+/* ==========================================================================
+   7. Footer
+   ========================================================================== */
+.main-footer {
+    background-color: var(--primary-forest);
+    color: #ffffff;
+    padding: 50px 20px 20px 20px;
+    font-size: 0.85rem;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-col h3 {
+    color: var(--accent-lime);
+    margin-bottom: 15px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col li {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copyright-bar {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 20px;
+    margin-top: 30px;
+    color: #aaa;
+    font-size: 0.75rem;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInUp 0.6s forwards ease-out;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media(max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}

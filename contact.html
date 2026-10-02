@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - PANCIVIL LANDSCAPERS COMPANY LIMITED</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Global and Component Stylesheets -->
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="contact.css">
+    <head>
+    <!-- Add this inside your <head> tag -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <h1 style="text-align: center; font-family: sans-serif;">
+                    <span style="color: #4A4A4A;">PAN-CIVIL</span>
+                    <span style="color: #90EE90;">LANDSCAPERS</span>
+                </h1>
+                <img class="profile-avatar" src="pancivil.png" alt="Pancivil Landscapers Profile Face Avatar" style="width: 150px; height: auto;">
+                <p class="tagline">FOR FRIENDLY QUALITY SERVICES</p>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-menu">
+                <a href="about.html" class="nav-btn">About Us</a>
+                <a href="services.html" class="nav-btn">Services</a>
+                <a href="dashboard.html" class="nav-btn cta-btn">Dashboard</a>
+                <a href="gallery.html" class="nav-btn cta-btn">Gallery</a>
+            </nav>
+        </div>
+
+        <!-- Professional Contact Page Marquee Loop -->
+<div class="contact-ticker-wrap">
+    <div class="contact-ticker">
+        <div class="ct-item"><i class="fas fa-headset"></i> Quick Response Within 24 Hours</div>
+        <div class="ct-item"><i class="fas fa-file-invoice-dollar"></i> Professional Structural Quote Breakdown</div>
+        <div class="ct-item"><i class="fas fa-clock"></i> Client Desk Open Mon - Sat</div>
+        <div class="ct-item"><i class="fas fa-check-circle"></i> Fully Licensed & Insured Crew</div>
+        <div class="ct-item"><i class="fas fa-phone-alt"></i> Site Booking:  +256 778229330 or +256 757603364</div>
+        
+        <!-- Duplicated items for a perfectly seamless infinite scroll loop -->
+        <div class="ct-item"><i class="fas fa-headset"></i> Quick Response Within 24 Hours</div>
+        <div class="ct-item"><i class="fas fa-file-invoice-dollar"></i> Professional Structural Quote Breakdown</div>
+        <div class="ct-item"><i class="fas fa-clock"></i> Client Desk Open Mon - Sat</div>
+        <div class="ct-item"><i class="fas fa-check-circle"></i> Fully Licensed & Insured Crew</div>
+        <div class="ct-item"><i class="fas fa-phone-alt"></i> Site Booking: +256 778229330 or +256 757603364</div>
+    </div>
+</div>
+
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="contact-container">
+        <div class="contact-heading-area">
+            <span class="sub-title">Get In Touch</span>
+            <h2>Connect With Our Team</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Left Panel: Corporate Info Details -->
+            <div class="contact-details-card">
+                <h3>Office Information</h3>
+                
+                <div class="detail-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="detail-text">
+                        <h4>Our Location</h4>
+                        <p>,<br>Eco District, Kampala, Uganda</p>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="detail-text">
+                        <h4>Call Settings</h4>
+                        <p>tel:+256 778229330</p>
+                        <p>tel:+256 757603364</p>
+                    </div>
+                </div>
+
+                                  <div class="detail-row">
+                    <i class="fas fa-clock"></i>
+                    <div class="detail-text">
+                        <h4>Operational Hours</h4>
+                        <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                        <p>Saturday: 9:00 AM - 1:00 PM</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Contact & Booking Form -->
+            <div class="contact-form-wrapper">
+                <div id="formFeedback" class="form-alert"></div>
+                
+                <form id="pancivilContactForm" novalidate>
+                    <div class="form-row-twin">
+                        <div class="form-block">
+                            <label for="clientName">Your Name *</label>
+                            <input type="text" id="clientName" class="field-input" placeholder="Enter full name" required>
+                        </div>
+                        <div class="form-block">
+                            <label for="clientEmail">Email Address *</label>
+                            <input type="email" id="clientEmail" class="field-input" placeholder="name@domain.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row-twin">
+                        <div class="form-block">
+                            <label for="clientPhone">Phone Number</label>
+                            <input type="tel" id="clientPhone" class="field-input" placeholder="e.g. +256 700...">
+                        </div>
+                        <div class="form-block">
+                            <label for="serviceSelect">Service Profile</label>
+                            <select id="serviceSelect" class="field-input">
+                                <option value="general">General Corporate Inquiry</option>
+                                <option value="lawn-care">Premium Lawn Maintenance</option>
+                                <option value="planting">Vibrant Seasonal Planting</option>
+                                <option value="hardscape">Custom Hardscape Construction</option>
+                                <option value="commercial">Commercial Operations</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-block">
+                        <label for="clientMessage">Message Details *</label>
+                        <textarea id="clientMessage" class="field-input" placeholder="Provide project layout criteria or request context details..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="action-submit-btn">Submit Request</button>
+                </form>
+            </div>
+        </div>
+           
+    </main>
+
+   <!-- Professional Contact Page Footer -->
+<footer class="contact-footer">
+    <div class="c-footer-container">
+        
+        <!-- Column 1: Core Corporate Branding Details -->
+        <div class="c-footer-col brand-summary">
+            <h3>PANCIVIL <span class="accent-text">LANDSCAPERS</span></h3>
+            <p>Transforming ordinary outdoor spaces into extraordinary living landscapes. Committed to premium precision, eco-conscious sustainability, and absolute customer satisfaction.</p>
+            <div class="c-social-links">
+    <a href="https://tiktok.com/PANCIVIL LANDSCAPERS" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x"></i></a>
+</div>
+        </div>
+
+        <!-- Column 2: Direct Communication Shortcuts -->
+        <div class="c-footer-col instant-channels">
+            <h4>Quick Contact Desk</h4>
+            <ul>
+                <li><i class="fas fa-phone-alt"></i> +256 778229330 or +256 757603364</li>
+                <li><i class="fas fa-envelope"></i>@pancivillandscapers.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> 45, Eco District, Kampala</li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Lead Action Catchment Form -->
+        <div class="c-footer-col newsletter-box">
+            <h4>Subscribe for Project Tips</h4>
+            <p>Get professional seasonal turf care guidelines and exclusive landscaping updates sent straight to your inbox.</p>
+            <form class="footer-inline-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+                <input type="email" placeholder="Your email address" required aria-label="Email for newsletter">
+                <button type="submit" aria-label="Subscribe Button"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Legal Privacy Copyright Bar -->
+    <div class="c-copyright-strip">
+        <p>&copy; <span id="current-year-footer">2026</span> PANCIVIL LANDSCAPERS COMPANY LIMITED. All Rights Reserved.</p>
+    </div>
+</footer>
+
+
+    <!-- Scripts Integration Link Components -->
+    <script src="contact.js"></script>
+    <script src="index.js"></script>
+    <!-- Supabase Client CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</body>
+</html>
