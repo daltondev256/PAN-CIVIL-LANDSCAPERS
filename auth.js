@@ -27,12 +27,12 @@ function hashToken(token) {
 function setSessionCookie(res, token) {
   const maxAge = SESSION_DAYS * 24 * 60 * 60;
   res.setHeader('Set-Cookie',
-    \`\${COOKIE_NAME}=\${encodeURIComponent(token)}; HttpOnly; SameSite=Lax; Path=/; Max-Age=\${maxAge}\${isProduction ? '; Secure' : ''}\`);
+    `${COOKIE_NAME}=${encodeURIComponent(token)}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${maxAge}${isProduction ? '; Secure' : ''}`);
 }
 
 function clearSessionCookie(res) {
   res.setHeader('Set-Cookie',
-    \`\${COOKIE_NAME}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0\${isProduction ? '; Secure' : ''}\`);
+    `${COOKIE_NAME}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0${isProduction ? '; Secure' : ''}`);
 }
 
 function verifyPassword(password, storedHash) {
