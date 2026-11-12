@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Administrator Sign In | PAN-CIVIL LANDSCAPERS</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-page">
+  <main class="login-card">
+    <a class="login-brand" href="index.html">PAN-CIVIL <span>LANDSCAPERS</span></a>
+    <p class="login-eyebrow">SECURE ADMINISTRATION</p>
+    <h1>Welcome back</h1>
+    <p class="login-intro">Sign in with your authorized administrator account to open the control panel.</p>
+    <div id="loginFeedback" class="login-feedback" role="alert" aria-live="polite" hidden></div>
+    <form id="loginForm">
+      <label for="email">Administrator email</label>
+      <input id="email" name="email" type="email" autocomplete="username" required maxlength="254">
+      <label for="password">Password</label>
+      <div class="password-field">
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="button" id="togglePassword" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+      </div>
+      <button class="login-submit" type="submit" id="loginButton">Sign in securely</button>
+    </form>
+    <a class="back-home" href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to website</a>
+  </main>
+  <script src="login.js" defer></script>
+</body>
+</html>
