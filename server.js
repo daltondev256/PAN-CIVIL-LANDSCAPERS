@@ -19,6 +19,9 @@ app.set('trust proxy', 1);
 app.use(express.json({ limit: '20kb' }));
 app.use(express.urlencoded({ extended: false, limit: '20kb' }));
 
+// Preserve the static homepage when the Express app handles incoming requests.
+app.get('/', (req, res) => res.redirect(302, '/index.html'));
+
 // Per-instance fallback throttle. Use a shared rate-limit service for high-traffic deployments.
 const loginAttempts = new Map();
 function loginRateLimit(req, res, next) {
