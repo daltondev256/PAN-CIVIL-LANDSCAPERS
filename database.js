@@ -14,7 +14,7 @@ let schemaReady;
 async function ensureSchema() {
   if (!pool) throw new Error('DATABASE_URL is not configured.');
   if (!schemaReady) {
-    schemaReady = pool.query(\`
+    schemaReady = pool.query(`
       CREATE TABLE IF NOT EXISTS inquiries (
         id BIGSERIAL PRIMARY KEY,
         name VARCHAR(160) NOT NULL,
@@ -42,7 +42,7 @@ async function ensureSchema() {
       CREATE INDEX IF NOT EXISTS inquiries_created_at_idx ON inquiries (created_at DESC);
       CREATE INDEX IF NOT EXISTS quotes_created_at_idx ON quotes (created_at DESC);
       CREATE INDEX IF NOT EXISTS admin_sessions_expires_at_idx ON admin_sessions (expires_at);
-    \`).catch(error => {
+    `).catch(error => {
       schemaReady = null;
       throw error;
     });
