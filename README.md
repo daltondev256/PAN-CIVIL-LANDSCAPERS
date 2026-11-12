@@ -1,31 +1,61 @@
 # PAN-CIVIL LANDSCAPERS
 
-## Run locally
+## Vercel deployment (recommended)
 
-1. Install Node.js 18 or newer.
-2. Run `npm install`.
-3. Generate a password hash: `npm run create-admin-hash`. Use a unique password with at least 12 characters and keep the printed hash private.
-4. Set the following environment variables in your local shell or hosting provider (do not commit a real `.env` file):
+The website is served from `public/`; the Express API is exported from `server.js` and runs as a Vercel Function. Customer inquiries, quote requests and admin sessions are stored in PostgreSQL, not on the function's temporary filesystem.
 
-   - `ADMIN_EMAIL`: the administrator sign-in email.
-   - `ADMIN_PASSWORD_HASH`: the complete scrypt hash printed by the command above.
-   - `NODE_ENV=production` on an HTTPS production deployment.
-   - `PORT` is optional (defaults to 5000).
+### 1. Connect a persistent database
 
-5. Start the API with `npm start`.
-6. Open `/login.html` and sign in. The dashboard checks the server session before loading any private data.
+1. Open the PAN-CIVIL LANDSCAPERS project in Vercel.
+2. Open **Storage / Marketplace** and install the **Neon Postgres** integration (or connect an existing supported PostgreSQL database).
+3. Connect it to this project and enable the **Production** environment.
+4. Confirm that Vercel has added `DATABASE_URL` to the project environment variables.
 
-## Authentication design
+Vercel's old Vercel Postgres product is no longer available for new projects; use a Marketplace Postgres integration such as Neon.
 
-- Administrator password is stored only as a scrypt hash in the hosting environment, never in browser code or SQLite.
-- Successful login creates a cryptographically random 256-bit session token. Only its SHA-256 digest is stored in SQLite.
-- The browser receives the token in an HttpOnly, SameSite=Lax cookie. Production cookies also use Secure and therefore require HTTPS.
-- Session records expire after seven days. Logout deletes the server-side session.
-- The inquiries and quote administration endpoints require the `requireAdmin` middleware.
-- Login attempts are throttled per IP in the running process. For multi-instance deployments, replace this in-memory throttle with a shared Redis/database rate limiter.
+### 2. Create the administrator password hash
 
-## Deployment notes
+On your own computer, run:
 
-Use a Node-capable host that runs `npm start` and persists the SQLite database file, or migrate the database to a managed persistent database before using multiple server instances. Configure `NODE_ENV=production` and HTTPS. Do not publish your password hash, session database, or environment variables. Back up the database securely.
+```sh
+npm install
+npm run create-admin-hash
+```
 
-The login is intentionally disabled until `ADMIN_EMAIL` and a real `ADMIN_PASSWORD_HASH` are configured. No default administrator password is included.
+Enter a unique password of at least 12 characters. Copy the generated `scrypt$...` hash directly into Vercel as `ADMIN_PASSWORD_HASH`. Do not send the password or hash in chat, email, or GitHub.
+
+### 3. Configure Vercel environment variables
+
+In **Project Settings → Environment Variables**, add:
+
+- `ADMIN_EMAIL`: the administrator sign-in email.
+- `ADMIN_PASSWORD_HASH`: the complete generated scrypt hash.
+- `NODE_ENV`: `production`.
+- `DATABASE_URL`: supplied by the connected Neon/Postgres integration.
+
+Apply these variables to **Production**. Do not commit real values to this repository.
+
+### 4. Deploy and verify
+
+Push to the Vercel Production Branch (normally `main`) or redeploy the latest commit. Vercel applies environment-variable changes only to new deployments.
+
+After deployment, check:
+
+- `/api/health` returns `{"status":"ok","database":"connected"}`.
+- `/login.html` loads.
+- A successful sign-in redirects to `/dashboard.html`.
+- `/api/admin/inquiries` and `/api/admin/quotes` return 401 when signed out and data only when signed in.
+
+## Local development
+
+1. Install Node.js 20 or newer.
+2. Create a PostgreSQL database and set `DATABASE_URL`.
+3. Set `ADMIN_EMAIL` and `ADMIN_PASSWORD_HASH` as above.
+4. Run `npm install` and `npm start`.
+5. Open `http://localhost:5000/login.html`.
+
+The database tables are created automatically on first API request. The app uses parameterized SQL queries, random 256-bit session tokens, SHA-256 token digests, HttpOnly/SameSite cookies, Secure cookies in production, and seven-day server-side sessions. Login attempts are throttled per running instance; a shared rate limiter is recommended if traffic or deployment scale grows.
+
+## Important data note
+
+The previous development setup used SQLite. This deployment now uses PostgreSQL because Vercel Functions do not provide a persistent writable application filesystem. A local SQLite database file is not tracked in Git and is not automatically copied into the new database. If you have important records in a local SQLite file, export and import them before switching production traffic.

@@ -1,0 +1,290 @@
+/* Premium Theme Variable System Extensions */
+:root {
+    --primary-slate: #2D312E;      /* Muted, high-end graphite slate tone */
+    --accent-sage: #76D176;        /* Vibrant brand accent highlight green */
+    --accent-light-sage: #F0FDF4;  /* Clean structural token background */
+    --bg-snow: #FAFAFA;            /* Soft high-contrast presentation sheet */
+    --white: #FFFFFF;
+    --text-body: #555A56;
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-snow);
+    color: var(--primary-slate);
+    margin: 0;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Fluid System Structural Sizing Contraints */
+.container-wide {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+.container-narrow {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+}
+
+/* Header Re-alignment & Typography Enhancements */
+.brand-title {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
+}
+.brand-dark { color: #4A4A4A; }
+.brand-light { color: #90EE90; }
+
+/* Micro Component Badge Chips */
+.pill-badge {
+    background-color: var(--accent-light-sage);
+    color: #3b873b;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.custom-divider {
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-sage);
+    margin: 24px auto;
+    border-radius: 10px;
+}
+
+/* Minimalist Hero Layout Component block */
+.about-hero-section {
+    padding: 90px 0 60px 0;
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-snow) 100%);
+}
+
+.about-hero-section h2 {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--primary-slate);
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.hero-lead {
+    font-size: 19px;
+    color: var(--text-body);
+    font-weight: 400;
+}
+
+/* Asymmetric Image/Text Container Cards */
+.narrative-grid-section {
+    padding: 40px 0;
+}
+
+.split-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid #EFEFEF;
+}
+
+.card-visual-wrapper {
+    min-height: 400px;
+    position: relative;
+    background-color: #E2E8F0;
+    background-image: linear-gradient(135deg, #DFE9F3 0%, #CBDEB1 100%); /* Elegant ambient placeholder mesh gradient */
+}
+
+.image-overlay-info {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background-color: rgba(45, 49, 46, 0.95);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    color: var(--white);
+}
+
+.image-overlay-info .stat-number {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent-sage);
+}
+
+.image-overlay-info .stat-caption {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #CCCCCC;
+}
+
+.card-text-wrapper {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section-tag {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent-sage);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.card-text-wrapper h3 {
+    font-size: 32px;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.5px;
+}
+
+.card-text-wrapper p {
+    color: var(--text-body);
+    margin: 0 0 20px 0;
+    font-size: 15px;
+}
+
+.signature-block {
+    margin-top: 15px;
+    border-top: 1px solid #EEEEEE;
+    padding-top: 20px;
+}
+
+.quote-author {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* High-Contrast Operations Metrics Data Sheet Panel Strip */
+.metrics-strip-section {
+    padding: 60px 0;
+    background-color: var(--primary-slate);
+    color: var(--white);
+}
+
+.metrics-row-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    gap: 40px;
+}
+
+.metric-item-box .counter {
+    font-size: 54px;
+    font-weight: 700;
+    color: var(--accent-sage);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.metric-item-box p {
+    margin: 0;
+    font-size: 14px;
+    color: #A3AFA5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 3-Column Architectural Framework Grid Layout Cards */
+.pillars-section {
+    padding: 100px 0;
+}
+
+.section-heading-center {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-heading-center h3 {
+    font-size: 36px;
+    margin: 10px 0 0 0;
+    letter-spacing: -0.5px;
+}
+
+.pillars-3col-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.modern-pillar-card {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    border: 1px solid #F0F0F0;
+    transition: var(--transition-smooth);
+}
+
+.modern-pillar-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    border-color: var(--accent-sage);
+}
+
+.icon-circle {
+    width: 64px;
+    height: 64px;
+    background-color: var(--accent-light-sage);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.icon-circle i {
+    font-size: 24px;
+    color: #3b873b;
+}
+
+.modern-pillar-card h4 {
+    font-size: 20px;
+    margin: 0 0 12px 0;
+}
+
+.modern-pillar-card p {
+    margin: 0;
+    color: var(--text-body);
+    font-size: 14.5px;
+    line-height: 1.6;
+}
+
+/* Responsive Adaptive Fluid Workspace Scale Breakpoints */
+@media (max-width: 992px) {
+    .split-card {
+        grid-template-columns: 1fr;
+    }
+    .card-text-wrapper {
+        padding: 40px;
+    }
+    .about-hero-section h2 {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 768px) {
+    .metrics-row-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .about-hero-section {
+        padding: 60px 0 30px 0;
+    }
+}

@@ -1,0 +1,202 @@
+/* Dashboard Specific Variables & Core Elements */
+:root {
+    --primary-dark: #4A4A4A;
+    --primary-light: #90EE90;
+    --bg-light: #f9f9f9;
+    --white: #ffffff;
+    --border-color: #e0e0e0;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: var(--primary-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Alignment Fixes */
+.brand-title {
+    text-align: center; 
+    font-family: sans-serif; 
+    margin-bottom: 5px;
+}
+.brand-dark { color: var(--primary-dark); }
+.brand-light { color: var(--primary-light); }
+.logo-area .tagline {
+    margin-top: 0; 
+    text-align: center; 
+    font-size: 12px; 
+    letter-spacing: 2px;
+}
+
+/* Layout Split Wrapper */
+.dashboard-wrapper {
+    display: flex;
+    flex: 1;
+}
+
+/* Sidebar Navigation Layout */
+.sidebar {
+    width: 250px;
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid #5a5a5a;
+}
+
+.sidebar-header h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    color: #ddd;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar-menu li a:hover, 
+.sidebar-menu li.active a {
+    background-color: #5a5a5a;
+    color: var(--primary-light);
+    border-left: 4px solid var(--primary-light);
+}
+
+/* Main Content Area Styling */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+.content-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Analytics Metric Grid Layout */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.metric-card {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.metric-info h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.metric-info p {
+    margin: 5px 0 0 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.metric-icon {
+    font-size: 36px;
+    color: var(--primary-light);
+    background-color: #f0fdf0;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* Table Card Component Elements */
+.data-section {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.data-section h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.dashboard-table th, 
+.dashboard-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dashboard-table th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+}
+
+/* Context Badge Labels */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-badge.completed { background-color: #d4edda; color: #155724; }
+.status-badge.pending { background-color: #fff3cd; color: #856404; }
+.status-badge.active { background-color: #cce5ff; color: #004085; }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .dashboard-wrapper {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+    .dashboard-table {
+        display: block;
+        overflow-x: auto;
+    }
+}

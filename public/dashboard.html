@@ -1,0 +1,193 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | PANCIVIL LANDSCAPERS COMPANY LIMITED</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Link to external stylesheet files -->
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- Add this inside your <head> tag -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <h1 class="brand-title">
+                    <span class="brand-dark">PANCIVIL</span>
+                    <span class="brand-light">LANDSCAPERS</span>
+                </h1>
+                <p class="tagline">FOR FRIENDLY QUALITY SERVICES</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="about.html" class="nav-btn">About Us</a>
+                <a href="services.html" class="nav-btn">Services</a>
+                <a href="contact.html" class="nav-btn">Contact</a>
+                <a href="index.html" class="nav-btn cta-btn">Homepage</a>
+                <button type="button" class="nav-btn cta-btn" onclick="logoutAdmin()">Sign Out</button>
+            </nav>
+        </div>
+
+        <!-- Operational Marquee Ticker -->
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <div class="ticker__item"><i class="fas fa-bell"></i> System Alert: 3 New Quote Inquiries Received</div>
+                <div class="ticker__item"><i class="fas fa-tasks"></i> Schedule: 5 Premium Lawn Maintenances Today</div>
+                <div class="ticker__item"><i class="fas fa-check-circle"></i> Update: Custom Hardscape Project Completed</div>
+                <div class="ticker__item"><i class="fas fa-exclamation-triangle"></i> Notice: Weather Alert for Seasonal Planting</div>
+                <!-- Duplicated for seamless loop -->
+                <div class="ticker__item"><i class="fas fa-bell"></i> System Alert: 3 New Quote Inquiries Received</div>
+                <div class="ticker__item"><i class="fas fa-tasks"></i> Schedule: 5 Premium Lawn Maintenances Today</div>
+                <div class="ticker__item"><i class="fas fa-check-circle"></i> Update: Custom Hardscape Project Completed</div>
+                <div class="ticker__item"><i class="fas fa-exclamation-triangle"></i> Notice: Weather Alert for Seasonal Planting</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Container Split -->
+    <div class="dashboard-wrapper">
+        
+        <!-- Dashboard Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Control Panel</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active" data-target="overview"><a href="index.html"><i class="fas fa-chart-line"></i> Overview</a></li>
+                <li data-target="projects"><a href="about.html"><i class="fas fa-question mark"></i>About Us</a></li>
+                <li data-target="schedules"><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
+                <li data-target="quotes"><a href="gallery.html"><i class="fas fa-images"></i> Our Portfolio</a></li>
+                <li data-target="settings"><a href="aichatbot.html"><i class="fas fa-robot"></i> Get AI assistance</a></li>
+            </ul>
+        </aside>
+
+        <!-- Dashboard Analytics Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h2>Welcome Back, Administrator</h2>
+                <div class="date-display"><i class="fas fa-calendar"></i> <span id="dashboard-date">August 2026</span></div>
+            </div>
+
+            <!-- Key Metric Row Card Summaries -->
+            <section class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-info">
+                        <h3>Active Projects</h3>
+                        <p>12</p>
+                    </div>
+                    <i class="fas fa-seedling metric-icon"></i>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-info">
+                        <h3>Pending Quotes</h3>
+                        <p>8</p>
+                    </div>
+                    <i class="fas fa-envelope-open-text metric-icon"></i>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-info">
+                        <h3>Lawn Bookings</h3>
+                        <p>34</p>
+                    </div>
+                    <i class="fas fa-cut metric-icon"></i>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-info">
+                        <h3>Completed Projects</h3>
+                        <p>148</p>
+                    </div>
+                    <i class="fas fa-check-double metric-icon"></i>
+                </div>
+            </section>
+            <!-- Inside your dashboard.html -->
+<section class="dashboard-container">
+    <h2>Client Inquiries Dashboard</h2>
+    <div class="table-responsive">
+        <table id="submissionsTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Service</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic rows populated via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+            <!-- Comprehensive Summary Overview Table -->
+            <section class="data-section">
+                <h3>Recent Project & Service Schedules</h3>
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Service Type</th>
+                            <th>Scheduled Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sarah M.</td>
+                            <td>Backyard Patio Hardscaping</td>
+                            <td>Aug 03, 2026</td>
+                            <td><span class="status-badge active">In Progress</span></td>
+                        </tr>
+                        <tr>
+                            <td>David K. (Estate)</td>
+                            <td>Premium Lawn Maintenance</td>
+                            <td>Aug 05, 2026</td>
+                            <td><span class="status-badge pending">Scheduled</span></td>
+                        </tr>
+                        <tr>
+                            <td>John D.</td>
+                            <td>Vibrant Seasonal Planting</td>
+                            <td>Jul 28, 2026</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col company-info">
+                <h3>PANCIVIL LANDSCAPERS CO. LTD</h3>
+                <p>Internal Operations Management Portal. Authorized administrative use only. Maintain precision and sustainability daily.</p>
+            </div>
+            <div class="footer-col social-links">
+                <h3>System Navigation Links</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Back to Homepage</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-images"></i> Manage Media Gallery</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            <p>&copy; <span id="current-year"></span> PANCIVIL LANDSCAPERS COMPANY LIMITED. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Link to external script files -->
+    <script src="index.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

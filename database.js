@@ -1,47 +1,58 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const { Pool } = require('pg');
 
-const dbFile = path.resolve(__dirname, 'pancivil.db');
-const db = new sqlite3.Database(dbFile, err => {
-    if (err) console.error('Error opening database:', err.message);
-    else console.log('Connected to SQLite database.');
-});
+const pool = process.env.DATABASE_URL
+  ? new Pool({
+      connectionString: process.env.DATABASE_URL,
+      max: 5,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 10000
+    })
+  : null;
 
-db.serialize(() => {
-    db.run(`CREATE TABLE IF NOT EXISTS inquiries (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        email TEXT NOT NULL,
-        phone TEXT,
+let schemaReady;
+
+async function ensureSchema() {
+  if (!pool) throw new Error('DATABASE_URL is not configured.');
+  if (!schemaReady) {
+    schemaReady = pool.query(\`
+      CREATE TABLE IF NOT EXISTS inquiries (
+        id BIGSERIAL PRIMARY KEY,
+        name VARCHAR(160) NOT NULL,
+        email VARCHAR(254) NOT NULL,
+        phone VARCHAR(50),
         message TEXT NOT NULL,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )`);
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      );
+      CREATE TABLE IF NOT EXISTS quotes (
+        id BIGSERIAL PRIMARY KEY,
+        client_name VARCHAR(160) NOT NULL,
+        phone VARCHAR(50) NOT NULL,
+        service_type VARCHAR(120) NOT NULL,
+        property_type VARCHAR(120),
+        preferred_date VARCHAR(40),
+        status VARCHAR(40) NOT NULL DEFAULT 'Pending',
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      );
+      CREATE TABLE IF NOT EXISTS admin_sessions (
+        token_hash CHAR(64) PRIMARY KEY,
+        admin_email VARCHAR(254) NOT NULL,
+        expires_at TIMESTAMPTZ NOT NULL,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      );
+      CREATE INDEX IF NOT EXISTS inquiries_created_at_idx ON inquiries (created_at DESC);
+      CREATE INDEX IF NOT EXISTS quotes_created_at_idx ON quotes (created_at DESC);
+      CREATE INDEX IF NOT EXISTS admin_sessions_expires_at_idx ON admin_sessions (expires_at);
+    \`).catch(error => {
+      schemaReady = null;
+      throw error;
+    });
+  }
+  await schemaReady;
+}
 
-    db.run(`CREATE TABLE IF NOT EXISTS quotes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        client_name TEXT NOT NULL,
-        phone TEXT NOT NULL,
-        service_type TEXT NOT NULL,
-        property_type TEXT,
-        preferred_date TEXT,
-        status TEXT DEFAULT 'Pending',
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )`);
+async function query(sql, params = []) {
+  await ensureSchema();
+  return pool.query(sql, params);
+}
 
-    db.run(`CREATE TABLE IF NOT EXISTS services (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        title TEXT NOT NULL,
-        description TEXT,
-        price_range TEXT
-    )`);
-
-    db.run(`CREATE TABLE IF NOT EXISTS admin_sessions (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        token_hash TEXT NOT NULL UNIQUE,
-        admin_email TEXT NOT NULL,
-        expires_at TEXT NOT NULL,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )`);
-});
-
-module.exports = db;
+module.exports = { query, ensureSchema, pool };

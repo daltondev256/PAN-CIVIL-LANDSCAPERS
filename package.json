@@ -2,17 +2,18 @@
   "name": "pan-civil-landscapers",
   "version": "1.0.0",
   "private": true,
-  "description": "PAN-CIVIL LANDSCAPERS website and admin API",
+  "description": "PAN-CIVIL LANDSCAPERS website and secure admin API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "create-admin-hash": "node create-admin-hash.js"
+    "create-admin-hash": "node create-admin-hash.js",
+    "check": "node --check server.js && node --check auth.js && node --check database.js"
   },
   "dependencies": {
     "express": "^4.21.2",
-    "sqlite3": "^5.1.7"
+    "pg": "^8.16.3"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   }
 }
