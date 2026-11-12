@@ -1,6 +1,4 @@
 const express = require('express');
-const crypto = require('crypto');
-const cors = require('cors');
 const db = require('./database');
 const {
     clearSessionCookie, createSession, hashToken,
@@ -11,27 +9,18 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || '';
-const isProduction = process.env.NODE_ENV === 'production';
 
 app.disable('x-powered-by');
-app.use(cors({
-    origin(origin, callback) {
-        const allowed = (process.env.ALLOWED_ORIGINS || '').split(',').map(v => v.trim()).filter(Boolean);
-        if (!origin || allowed.length === 0 && !isProduction || allowed.includes(origin)) return callback(null, true);
-        return callback(new Error('Origin not allowed by CORS'));
-    },
-    credentials: true
-}));
 app.use(express.json({ limit: '20kb' }));
 app.use(express.urlencoded({ extended: false, limit: '20kb' }));
 
-// Small per-process login throttle. Use a shared store (e.g. Redis) for multi-instance hosting.
+// Same-origin only: no permissive CORS policy is enabled.
 const loginAttempts = new Map();
 function loginRateLimit(req, res, next) {
     const key = req.ip || req.socket.remoteAddress || 'unknown';
     const now = Date.now();
-    const state = loginAttempts.get(key) || { count: 0, resetAt: now + 15 * 60 * 1000 };
-    if (now > state.resetAt) { state.count = 0; state.resetAt = now + 15 * 60 * 1000; }
+    const state = loginAttempts.get(key) || { count: 0, resetAt: now + 900000 };
+    if (now > state.resetAt) { state.count = 0; state.resetAt = now + 900000; }
     if (state.count >= 10) return res.status(429).json({ error: 'Too many sign-in attempts. Try again in 15 minutes.' });
     state.count += 1;
     loginAttempts.set(key, state);
@@ -46,8 +35,9 @@ app.post('/api/auth/login', loginRateLimit, async (req, res) => {
     }
     try {
         const validPassword = await verifyPassword(password, ADMIN_PASSWORD_HASH);
-        const valid = email === ADMIN_EMAIL && validPassword;
-        if (!valid) return res.status(401).json({ error: 'Incorrect email or password.' });
+        if (email !== ADMIN_EMAIL || !validPassword) {
+            return res.status(401).json({ error: 'Incorrect email or password.' });
+        }
         const token = await createSession(ADMIN_EMAIL);
         setSessionCookie(res, token);
         res.json({ message: 'Signed in successfully.' });
@@ -62,23 +52,19 @@ app.get('/api/auth/me', requireAdmin, (req, res) => {
 });
 
 app.post('/api/auth/logout', requireAdmin, (req, res) => {
-    const token = req.cookies?.pancivil_admin_session;
-    // Cookie parsing is intentionally done without a dependency.
-    const rawCookie = req.headers.cookie || '';
-    const match = rawCookie.match(/(?:^|;\\s*)pancivil_admin_session=([^;]+)/);
-    const sessionToken = match ? decodeURIComponent(match[1]) : token;
-    if (!sessionToken) {
+    const match = (req.headers.cookie || '').match(/(?:^|;\\s*)pancivil_admin_session=([^;]+)/);
+    const token = match ? decodeURIComponent(match[1]) : '';
+    if (!token) {
         clearSessionCookie(res);
         return res.json({ message: 'Signed out.' });
     }
-    db.run('DELETE FROM admin_sessions WHERE token_hash = ?', [hashToken(sessionToken)], err => {
+    db.run('DELETE FROM admin_sessions WHERE token_hash = ?', [hashToken(token)], err => {
         if (err) return res.status(500).json({ error: 'Unable to end session.' });
         clearSessionCookie(res);
         res.json({ message: 'Signed out.' });
     });
 });
 
-// Public customer submission endpoint.
 app.post('/api/contact', (req, res) => {
     const name = String(req.body.name || '').trim();
     const email = String(req.body.email || '').trim();
@@ -101,7 +87,6 @@ app.post('/api/quotes', (req, res) => {
         });
 });
 
-// All administrative data routes require a valid server-side session.
 app.get('/api/admin/inquiries', requireAdmin, (req, res) => {
     db.all('SELECT * FROM inquiries ORDER BY created_at DESC', [], (err, rows) => {
         if (err) return res.status(500).json({ error: 'Unable to load inquiries.' });
