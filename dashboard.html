@@ -30,6 +30,7 @@
                 <a href="services.html" class="nav-btn">Services</a>
                 <a href="contact.html" class="nav-btn">Contact</a>
                 <a href="index.html" class="nav-btn cta-btn">Homepage</a>
+                <button type="button" class="nav-btn cta-btn" onclick="logoutAdmin()">Sign Out</button>
             </nav>
         </div>
 
@@ -126,36 +127,7 @@
     </div>
 </section>
 
-<script>
-    async function loadDashboardData() {
-        try {
-            // Fetch records from your backend API or Supabase
-            const response = await fetch('/api/submissions');
-            const data = await response.json();
-            
-            const tbody = document.querySelector("#submissionsTable tbody");
-            tbody.innerHTML = "";
 
-            data.forEach(item => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${new Date(item.created_at).toLocaleDateString()}</td>
-                    <td>${item.client_name}</td>
-                    <td><a href="mailto:${item.client_email}">${item.client_email}</a></td>
-                    <td>${item.client_phone || 'N/A'}</td>
-                    <td>${item.service_profile}</td>
-                    <td>${item.client_message}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        } catch (error) {
-            console.error("Error loading dashboard data:", error);
-        }
-    }
-
-    // Load data when dashboard opens
-    document.addEventListener("DOMContentLoaded", loadDashboardData);
-</script>
 
             <!-- Comprehensive Summary Overview Table -->
             <section class="data-section">
