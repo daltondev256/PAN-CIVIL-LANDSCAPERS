@@ -1,0 +1,18 @@
+{
+  "name": "pan-civil-landscapers",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PAN-CIVIL LANDSCAPERS website and admin API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "create-admin-hash": "node create-admin-hash.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
