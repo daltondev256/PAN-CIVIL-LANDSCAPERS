@@ -163,7 +163,7 @@ app.get('/api/health', async (req, res) => {
 // Vercel detects this exported Express app and runs it as a Function.
 // Local development still uses the regular Node HTTP listener.
 if (require.main === module) {
-  app.listen(PORT, () => console.log(\`PAN-CIVIL server listening on port \${PORT}\`));
+  app.listen(PORT, () => console.log(`PAN-CIVIL server listening on port ${PORT}`));
 }
 
 module.exports = app;
