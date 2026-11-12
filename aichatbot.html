@@ -1,34 +1,51 @@
-
-<link rel="stylesheet" href="aichatbot.css"
-<div class="chat-widget">
-    <div id="chat-window" class="chat-window">
-        <div class="chat-header">
-            <div class="chat-header-info">
-                <i class="fas fa-robot"></i>
-                <div>
-                    <h4>Pancivil Assistant</h4>
-                    <span class="status-indicator">Online</span>
-                </div>
-            </div>
-            <button id="chat-close-btn" class="chat-close-btn" aria-label="Minimize Chat">&times;</button>
-        </div>
-
-        <div id="chat-body" class="chat-body">
-            <div class="chat-message bot">
-                Hello! Welcome to Pancivil Landscapers. How can I help transform your outdoor space today?
-            </div>
-        </div>
-
-        <div class="chat-quick-actions">
-            <button onclick="sendQuickReply('Get a Quote')">Get Quote</button>
-            <button onclick="sendQuickReply('Lawn Maintenance')">Lawn Care</button>
-            <button onclick="sendQuickReply('Hardscaping Options')">Hardscaping</button>
-        </div>
-
-        <div class="chat-footer">
-            <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off">
-            <button id="chat-send-btn"><i class="fas fa-paper-plane"></i></button>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chat with the PAN-CIVIL LANDSCAPERS assistant about landscaping services and quote requests.">
+  <title>Pancivil Assistant | PAN-CIVIL LANDSCAPERS</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="aichatbot.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-container">
+      <a class="brand-title" href="index.html">PAN-CIVIL <span class="accent-text">LANDSCAPERS</span></a>
+      <nav class="nav-menu" aria-label="Main navigation">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="services.html" class="nav-btn">Services</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+      </nav>
     </div>
-</div>
-<script src="aichatbot.js"></script>
+  </header>
+  <main>
+    <section class="chat-widget" aria-label="Pancivil chat assistant">
+      <div id="chat-window" class="chat-window">
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <i class="fas fa-robot" aria-hidden="true"></i>
+            <div><h1>Pancivil Assistant</h1><span class="status-indicator">Online</span></div>
+          </div>
+          <button type="button" id="chat-close-btn" class="chat-close-btn" aria-label="Minimize chat">&times;</button>
+        </div>
+        <div id="chat-body" class="chat-body" aria-live="polite">
+          <div class="chat-message bot">Hello! Welcome to Pancivil Landscapers. How can I help transform your outdoor space today?</div>
+        </div>
+        <div class="chat-quick-actions">
+          <button type="button" onclick="sendQuickReply('Get a Quote')">Get Quote</button>
+          <button type="button" onclick="sendQuickReply('Lawn Maintenance')">Lawn Care</button>
+          <button type="button" onclick="sendQuickReply('Hardscaping Options')">Hardscaping</button>
+        </div>
+        <form class="chat-footer" id="chat-form">
+          <label class="sr-only" for="chat-input">Your message</label>
+          <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off" maxlength="1000">
+          <button type="submit" id="chat-send-btn" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script src="aichatbot.js" defer></script>
+</body>
+</html>
