@@ -163,6 +163,30 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
+
+const assistantAttempts = new Map();
+app.post('/api/assistant/chat', async (req, res) => {
+  const clientKey = req.ip || req.socket.remoteAddress || 'unknown';
+  const now = Date.now();
+  const previous = assistantAttempts.get(clientKey);
+  if (previous && now < previous.resetAt && previous.count >= 20) return res.status(429).json({ error: 'You have sent several messages. Please wait a little and try again.' });
+  const attempt = !previous || now >= previous.resetAt ? { count: 0, resetAt: now + 10 * 60 * 1000 } : previous;
+  attempt.count += 1; assistantAttempts.set(clientKey, attempt);
+  const apiKey = process.env.XAI_API_KEY;
+  if (!apiKey) return res.status(503).json({ error: 'The AI assistant is being configured. Please contact PAN-CIVIL directly for now.' });
+  const supplied = Array.isArray(req.body.messages) ? req.body.messages.slice(-10) : [];
+  const messages = supplied.filter(item => item && ['user','assistant'].includes(item.role) && typeof item.content === 'string').map(item => ({ role:item.role, content:item.content.trim().slice(0,1500) })).filter(item => item.content);
+  if (!messages.length || messages[messages.length-1].role !== 'user') return res.status(400).json({ error: 'Please enter a message first.' });
+  try {
+    const upstream = await fetch('https://api.x.ai/v1/responses', { method:'POST', headers:{ Authorization:'Bearer '+apiKey, 'Content-Type':'application/json' }, body:JSON.stringify({ model:'grok-4.7', instructions:'You are the friendly website assistant for PAN-CIVIL LANDSCAPERS COMPANY LIMITED in Uganda. Help visitors understand landscaping, garden design, lawn care, planting, irrigation and outdoor improvement services. Be concise, welcoming and practical. Do not invent prices, guarantees, addresses, staff names, completed projects or business facts not supplied here. For quotations, availability, site visits or exact project commitments, invite the visitor to use the Contact page so the PAN-CIVIL team can confirm. Never request passwords, payment card details or sensitive personal information.', input:messages.map(item=>({role:item.role,content:item.content})), store:false, max_output_tokens:500 }) });
+    const payload = await upstream.json().catch(()=>({}));
+    if (!upstream.ok) { console.error('xAI assistant request failed:',upstream.status,payload.error?.message||'upstream error'); return res.status(502).json({error:'The AI assistant could not respond just now. Please try again shortly.'}); }
+    const reply=(payload.output||[]).filter(item=>item.type==='message').flatMap(item=>item.content||[]).filter(part=>part.type==='output_text'&&typeof part.text==='string').map(part=>part.text).join('\n').trim();
+    if (!reply) return res.status(502).json({error:'The AI assistant returned an empty response. Please try again.'});
+    return res.json({reply});
+  } catch(error) { console.error('xAI assistant connection error:',error.message); return res.status(502).json({error:'The AI assistant is temporarily unreachable. Please try again later.'}); }
+});
+
 // Vercel detects this exported Express app and runs it as a Function.
 // Local development still uses the regular Node HTTP listener.
 if (require.main === module) {
