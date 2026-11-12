@@ -1,194 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services - PAN-CIVIL LANDSCAPERS COMPANY LIMITED</title>
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://googleapis.com" rel="stylesheet">
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <link rel="stylesheet" href="services.css">
-    <!-- Add this inside your <head> tag -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore professional landscaping, lawn care, garden design, irrigation, paving and compound maintenance services from PAN-CIVIL LANDSCAPERS in Uganda.">
+  <meta name="theme-color" content="#173b2b">
+  <title>Our Services | PAN-CIVIL LANDSCAPERS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="services.css">
 </head>
-
 <body>
-
-    <!-- Header & Navigation -->
-    <header class="main-header">
-        <div class="header-container">
-            <div class="logo-area">
-                <h1>PANCIVIL <span class="accent-text">LANDSCAPERS</span></h1>
-                <p class="tagline">FOR FRIENDLY QUALITY SERVICES.</p>
-            </div>
-            <button class="menu-toggle" aria-label="Toggle Navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav class="nav-menu">
-                <a href="index.html" class="nav-btn">Home</a>
-                <a href="about.html" class="nav-btn">About Us</a>
-                <a href="services.html" class="nav-btn active">Services</a>
-                <a href="contact.html" class="nav-btn">Contact</a>
-                <a href="dashboard.html" class="nav-btn cta-btn">Dashboard</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Services Header Banner -->
-    <section class="services-hero">
-        <div class="hero-overlay">
-            <div class="hero-content fade-in">
-                <span class="sub-title">What We Do</span>
-                <h2>Professional Compound Solutions</h2>
-                <p>From routine structural upkeep to heavy structural garden architectural transformations.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Filtering & Catalog Section -->
-    <main class="services-catalog-section">
-        <div class="container">
-
-            <!-- Category Filter Tabs -->
-            <div class="filter-wrapper">
-                <button class="filter-tab active" data-category="all">All Services</button>
-                <button class="filter-tab" data-category="maintenance">Maintenance</button>
-                <button class="filter-tab" data-category="design">Design & Hardscapes</button>
-                <button class="filter-tab" data-category="planting">Horticulture</button>
-            </div>
-
-            <!-- Service Display Grid Matrix -->
-            <div class="services-grid">
-
-                <!-- Service Card 1 -->
-                <div class="service-card fade-in" data-type="maintenance">
-                    <div class="card-icon-header">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <h3>Commercial Lawn Maintenance</h3>
-                    <p class="card-desc">Precision mowing, biological edging, structural turf fertilization, and
-                        seasonal health management routines for expansive corporate sites.</p>
-                    <div class="service-meta">
-                        <span class="price-indicator">From Shs 1.2M / Mo</span>
-                        <button class="learn-more-btn" data-modal="lawn-modal">Details <i
-                                class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- Service Card 2 -->
-                <div class="service-card fade-in" data-type="design">
-                    <div class="card-icon-header">
-                        <i class="fas fa-hammer"></i>
-                    </div>
-                    <h3>Custom Hardscape Construction</h3>
-                    <p class="card-desc">Architectural stone walking pathways, structural stone brick retaining
-                        perimeter walls, customized concrete patios, and water features.</p>
-                    <div class="service-meta">
-                        <span class="price-indicator">Quote Based</span>
-                        <button class="learn-more-btn" data-modal="hardscape-modal">Details <i
-                                class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- Service Card 3 -->
-                <div class="service-card fade-in" data-type="planting">
-                    <div class="card-icon-header">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <h3>Vibrant Seasonal Plantings</h3>
-                    <p class="card-desc">Carefully matching soil conditions with exotic/native shrub selection and
-                        structural flower layout patterns for brilliant continuous blooming.</p>
-                    <div class="service-meta">
-                        <span class="price-indicator">From Shs 800,000</span>
-                        <button class="learn-more-btn" data-modal="planting-modal">Details <i
-                                class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                <!-- Service Card 4 -->
-                <div class="service-card fade-in" data-type="design">
-                    <div class="card-icon-header">
-                        <i class="fas fa-compass"></i>
-                    </div>
-                    <h3>Full Compound Overhaul</h3>
-                    <p class="card-desc">Complete landscape remodeling. Includes earth layout leveling, advanced
-                        drainage routing configurations, structural turf laying, and layout accent illumination.</p>
-                    <div class="service-meta">
-                        <span class="price-indicator">From Shs 5.0M</span>
-                        <button class="learn-more-btn" data-modal="overhaul-modal">Details <i
-                                class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
-
-    <!-- Interactive FAQ Component -->
-    <section class="faq-section">
-        <div class="faq-container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="divider"></div>
-
-            <div class="faq-accordion">
-                <div class="faq-item">
-                    <button class="faq-question">How often do you recommend compound maintenance schedules? <i
-                            class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer">
-                        <p>For residential estates under heavy seasonal rainfall cycles, we recommend bi-weekly visits
-                            to maintain optimized grass length and weed defense infrastructure.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Do you offer landscape designs prior to construction? <i
-                            class="fas fa-chevron-down"></i></button>
-                    <div class="faq-answer">
-                        <p>Yes, all custom hardscape and compound overhaul projects include an initial 2D architectural
-                            blueprint and optional 3D landscape renderings for spatial verification before ground
-                            breakout.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Service Details Modal (Dynamic Overlay) -->
-    <div id="service-detail-modal" class="modal-overlay">
-        <div class="modal-box">
-            <button class="close-modal-btn">&times;</button>
-            <div id="modal-dynamic-content">
-                <!-- Data loaded dynamically through JS -->
-            </div>
-        </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="PAN-CIVIL Landscapers home">
+        <span class="brand-mark"><i class="fa-solid fa-leaf"></i></span>
+        <span class="brand-copy"><strong>PAN-CIVIL</strong><small>LANDSCAPERS</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><i class="fa-solid fa-bars"></i></button>
+      <nav class="nav-menu" id="primary-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="services.html" aria-current="page">Services</a>
+        <a href="gallery.html">Our Work</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-cta" href="contact.html">Request a quote <i class="fa-solid fa-arrow-right"></i></a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Footer Section -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-col company-info">
-                <h3>PANCIVIL LANDSCAPERS CO. LTD</h3>
-                <p>Transforming ordinary outdoor spaces into extraordinary living landscapes. Committed to precision,
-                    sustainability, and exceptional service.</p>
-            </div>
-            <div class="footer-col social-links">
-                <h3>Connect With Us</h3>
-                <ul>
-                    <li><a href="https://tiktok.com" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i>
-                            TikTok</a></li>
-                    <li><a href="https://facebook.com" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i>
-                            Facebook</a></li>
-                    <li><a href="https://x.com" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> X /
-                            Twitter</a></li>
-                </ul>
-            </div>
+  <main>
+    <section class="services-hero">
+      <div class="hero-image" role="img" aria-label="Beautiful green landscaped garden"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span></span> Thoughtful outdoor spaces</p>
+        <h1>We make your<br><em>outdoors extraordinary.</em></h1>
+        <p class="hero-copy">From a healthy lawn to a complete compound transformation, we bring care, creativity and craftsmanship to every landscape.</p>
+        <div class="hero-actions">
+          <a class="button button-lime" href="contact.html">Discuss your project <i class="fa-solid fa-arrow-right"></i></a>
+          <a class="hero-link" href="#service-list">Explore our services <i class="fa-solid fa-chevron-down"></i></a>
         </div>
-        <div class="copyright-bar">
-            <p>&copy; <span id="current-year"></span> PANCIVIL LANDSCAPERS COMPANY LIMITED. All Rights Reserved.</p>
-        </div>
-    </footer>
+        <div class="hero-note"><i class="fa-solid fa-location-dot"></i> Landscaping solutions across Uganda</div>
+      </div>
+      <div class="hero-side-label">DESIGN · BUILD · MAINTAIN</div>
+    </section>
 
-    <script src="services.js"></script>
+    <section class="intro-strip">
+      <div class="intro-inner">
+        <p>OUR EXPERTISE</p>
+        <h2>Beautifully planned.<br><span>Professionally delivered.</span></h2>
+        <div class="intro-description">We combine practical site knowledge with a considered design approach to create outdoor environments that look welcoming and work beautifully every day.</div>
+      </div>
+    </section>
+
+    <section class="services-section" id="service-list">
+      <div class="section-heading">
+        <div><p class="eyebrow dark"><span></span> What we do</p><h2>Services built around<br>your <em>landscape.</em></h2></div>
+        <p>Choose a service to explore. Not sure where to start? Tell us about your space and we will help you plan the next step.</p>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter services">
+        <button class="filter-tab active" type="button" data-filter="all" aria-pressed="true">All services</button>
+        <button class="filter-tab" type="button" data-filter="design" aria-pressed="false">Design & construction</button>
+        <button class="filter-tab" type="button" data-filter="care" aria-pressed="false">Lawn & maintenance</button>
+        <button class="filter-tab" type="button" data-filter="garden" aria-pressed="false">Plants & irrigation</button>
+      </div>
+
+      <div class="service-grid">
+        <article class="service-card" data-category="care">
+          <div class="service-photo photo-lawn"><span class="service-number">01</span><span class="photo-icon"><i class="fa-solid fa-scissors"></i></span></div>
+          <div class="service-body"><p class="service-type">LAWN & MAINTENANCE</p><h3>Lawn care & maintenance</h3><p>Keep your outdoor space neat, healthy and inviting with reliable lawn care tailored to your property.</p><ul><li>Mowing and edging</li><li>Weed control and lawn feeding</li><li>Scheduled compound upkeep</li></ul><a class="service-link" href="contact.html?service=Lawn%20care%20and%20maintenance">Enquire about this service <i class="fa-solid fa-arrow-right"></i></a></div>
+        </article>
+        <article class="service-card" data-category="design">
+          <div class="service-photo photo-design"><span class="service-number">02</span><span class="photo-icon"><i class="fa-solid fa-compass-drafting"></i></span></div>
+          <div class="service-body"><p class="service-type">DESIGN & CONSTRUCTION</p><h3>Landscape design</h3><p>Make the most of your outdoor space with a practical, attractive layout designed around your needs.</p><ul><li>Site assessment and space planning</li><li>Garden layouts and planting plans</li><li>Design guidance and project planning</li></ul><a class="service-link" href="contact.html?service=Landscape%20design">Enquire about this service <i class="fa-solid fa-arrow-right"></i></a></div>
+        </article>
+        <article class="service-card" data-category="design">
+          <div class="service-photo photo-hardscape"><span class="service-number">03</span><span class="photo-icon"><i class="fa-solid fa-trowel-bricks"></i></span></div>
+          <div class="service-body"><p class="service-type">DESIGN & CONSTRUCTION</p><h3>Paving & hardscaping</h3><p>Add structure and function with carefully finished outdoor surfaces and landscape features.</p><ul><li>Walkways and paved areas</li><li>Patios and garden edging</li><li>Retaining and decorative features</li></ul><a class="service-link" href="contact.html?service=Paving%20and%20hardscaping">Enquire about this service <i class="fa-solid fa-arrow-right"></i></a></div>
+        </article>
+        <article class="service-card" data-category="garden">
+          <div class="service-photo photo-planting"><span class="service-number">04</span><span class="photo-icon"><i class="fa-solid fa-seedling"></i></span></div>
+          <div class="service-body"><p class="service-type">PLANTS & IRRIGATION</p><h3>Garden design & planting</h3><p>Bring colour, texture and life to your compound with thoughtful plant selection and placement.</p><ul><li>Flower beds and ornamental plants</li><li>Shrubs, trees and hedges</li><li>Planting and garden refreshes</li></ul><a class="service-link" href="contact.html?service=Garden%20design%20and%20planting">Enquire about this service <i class="fa-solid fa-arrow-right"></i></a></div>
+        </article>
+        <article class="service-card" data-category="garden">
+          <div class="service-photo photo-irrigation"><span class="service-number">05</span><span class="photo-icon"><i class="fa-solid fa-droplet"></i></span></div>
+          <div class="service-body"><p class="service-type">PLANTS & IRRIGATION</p><h3>Irrigation solutions</h3><p>Support healthy lawns and gardens with water-efficient solutions planned for your site.</p><ul><li>Watering system planning</li><li>Installation and adjustments</li><li>Routine system checks</li></ul><a class="service-link" href="contact.html?service=Irrigation%20solutions">Enquire about this service <i class="fa-solid fa-arrow-right"></i></a></div>
+        </article>
+        <article class="service-card" data-category="care">
+          <div class="service-photo photo-compound"><span class="service-number">06</span><span class="photo-icon"><i class="fa-solid fa-house-chimney"></i></span></div>
+          <div class="service-body"><p class="service-type">LAWN & MAINTENANCE</p><h3>Full compound transformation</h3><p>Give your property a fresh start with a coordinated improvement plan from ground preparation to finishing touches.</p><ul><li>Compound clean-up and preparation</li><li>Ground shaping and turf installation</li><li>Coordinated landscape improvements</li></ul><a class="service-link" href="contact.html?service=Full%20compound%20transformation">Enquire about this service <i class="fa-solid fa-arrow-right"></i></a></div>
+        </article>
+      </div>
+      <p class="no-results" hidden>No services match this category.</p>
+    </section>
+
+    <section class="process-section">
+      <div class="process-inner">
+        <div class="process-heading"><p class="eyebrow"><span></span> A clear process</p><h2>From first conversation<br>to <em>finished landscape.</em></h2><p>We keep the process straightforward, with clear communication at every stage.</p></div>
+        <div class="process-steps">
+          <div class="process-step"><span>01</span><div><h3>Tell us about your space</h3><p>Share your goals, location and the kind of work you have in mind.</p></div></div>
+          <div class="process-step"><span>02</span><div><h3>Plan the right solution</h3><p>We discuss the site, your priorities and a suitable scope of work.</p></div></div>
+          <div class="process-step"><span>03</span><div><h3>Bring the plan to life</h3><p>Our team works toward a neat, functional and lasting result.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="faq-heading"><p class="eyebrow dark"><span></span> Good to know</p><h2>Frequently asked<br><em>questions.</em></h2></div>
+      <div class="faq-list">
+        <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false">Do you work on both homes and commercial properties?<i class="fa-solid fa-plus"></i></button></h3><div class="faq-answer" hidden><p>Yes. Contact us with a few details about your property and the work you need. We can discuss the appropriate scope for residential, commercial or institutional spaces.</p></div></article>
+        <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false">Can I request a quotation before work begins?<i class="fa-solid fa-plus"></i></button></h3><div class="faq-answer" hidden><p>Absolutely. Send us your requirements through the contact page. We will discuss the project details needed to prepare a suitable quotation.</p></div></article>
+        <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false">Do you provide ongoing garden maintenance?<i class="fa-solid fa-plus"></i></button></h3><div class="faq-answer" hidden><p>We can discuss a maintenance arrangement based on your garden, property size and preferred schedule. Get in touch so we can understand what you need.</p></div></article>
+        <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false">How do I get started?<i class="fa-solid fa-plus"></i></button></h3><div class="faq-answer" hidden><p>Use the Request a quote link and tell us about your project. Include your location and, if possible, photos of the area you want us to work on.</p></div></article>
+      </div>
+    </section>
+
+    <section class="closing-cta">
+      <div><p class="eyebrow"><span></span> Let's grow something great</p><h2>Your outdoor space<br>has <em>more potential.</em></h2><p>Tell us what you have in mind. We would be glad to discuss your landscaping project.</p></div>
+      <a class="button button-lime" href="contact.html">Request a consultation <i class="fa-solid fa-arrow-right"></i></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand"><a class="brand brand-light" href="index.html"><span class="brand-mark"><i class="fa-solid fa-leaf"></i></span><span class="brand-copy"><strong>PAN-CIVIL</strong><small>LANDSCAPERS</small></span></a><p>Creating welcoming, practical and beautiful outdoor spaces through thoughtful landscaping and dependable care.</p></div>
+      <div><h3>Explore</h3><a href="index.html">Home</a><a href="about.html">About us</a><a href="services.html">Our services</a><a href="gallery.html">Our work</a></div>
+      <div><h3>Get in touch</h3><a href="contact.html">Request a quote</a><a href="contact.html">Contact our team</a></div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="current-year"></span> PAN-CIVIL LANDSCAPERS COMPANY LIMITED. All rights reserved.</span><span>Designed for better outdoor living.</span></div>
+  </footer>
+  <script src="services.js" defer></script>
 </body>
-
 </html>
