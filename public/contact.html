@@ -11,6 +11,22 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link rel="stylesheet" href="contact.css">
+<style id="pan-civil-marquee-styles">
+.pan-civil-marquee{position:relative;isolation:isolate;display:flex;align-items:center;gap:18px;min-height:54px;padding:0 clamp(16px,4vw,56px);overflow:hidden;color:#f5fff8;background:linear-gradient(105deg,#10251d 0%,#173b2b 55%,#0d2920 100%);border-bottom:1px solid rgba(177,255,198,.2);font-family:inherit}
+.pan-civil-marquee:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 18% 50%,rgba(120,226,147,.2),transparent 42%),linear-gradient(90deg,rgba(255,255,255,.035),transparent 45%,rgba(255,255,255,.025))}
+.pan-civil-marquee__tag{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid rgba(190,255,205,.28);border-radius:999px;background:rgba(161,244,178,.12);color:#c9ffd3;font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
+.pan-civil-marquee__dot{width:7px;height:7px;border-radius:50%;background:#a5f2a8;box-shadow:0 0 12px #a5f2a8}
+.pan-civil-marquee__viewport{min-width:0;flex:1;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+.pan-civil-marquee__track{display:flex;width:max-content;align-items:center;gap:34px;animation:panCivilMarquee 34s linear infinite}
+.pan-civil-marquee__group{display:flex;align-items:center;gap:34px;white-space:nowrap;color:#e4f4e8;font-size:12px;font-weight:650;letter-spacing:.11em;text-transform:uppercase}
+.pan-civil-marquee__group span:after{content:"✳";margin-left:34px;color:#9ee9a9;font-size:12px}
+.pan-civil-marquee__cta{flex:0 0 auto;display:inline-flex;align-items:center;gap:9px;color:#d8ffdf;text-decoration:none;font-size:12px;font-weight:800;white-space:nowrap}
+.pan-civil-marquee__cta:hover{color:#fff}
+@keyframes panCivilMarquee{to{transform:translateX(-50%)}}
+.pan-civil-marquee:hover .pan-civil-marquee__track{animation-play-state:paused}
+@media(max-width:680px){.pan-civil-marquee{gap:10px;min-height:48px;padding:8px 14px}.pan-civil-marquee__tag{font-size:9px;padding:6px 8px}.pan-civil-marquee__cta{font-size:0}.pan-civil-marquee__cta:after{content:"↗";font-size:17px}.pan-civil-marquee__group{font-size:10px;gap:22px}.pan-civil-marquee__group span:after{margin-left:22px}}
+@media(prefers-reduced-motion:reduce){.pan-civil-marquee__track{animation:none}.pan-civil-marquee__viewport{mask-image:none}}
+</style>
 </head>
 <body>
 <header class="contact-header">
@@ -22,6 +38,16 @@
   </nav>
  </div>
 </header>
+<div class="pan-civil-marquee" role="region" aria-label="PAN-CIVIL service announcements">
+  <span class="pan-civil-marquee__tag"><i class="pan-civil-marquee__dot" aria-hidden="true"></i> Outdoor living, elevated</span>
+  <div class="pan-civil-marquee__viewport" aria-label="Landscape design, lawn care, planting, irrigation, hardscaping and free site assessments">
+    <div class="pan-civil-marquee__track" aria-hidden="true">
+      <div class="pan-civil-marquee__group"><span>Landscape design</span><span>Lawn & garden care</span><span>Planting & greenery</span><span>Irrigation solutions</span><span>Hardscaping & paving</span><span>Free site assessment</span></div>
+      <div class="pan-civil-marquee__group"><span>Landscape design</span><span>Lawn & garden care</span><span>Planting & greenery</span><span>Irrigation solutions</span><span>Hardscaping & paving</span><span>Free site assessment</span></div>
+    </div>
+  </div>
+  <a class="pan-civil-marquee__cta" href="contact.html">Let's plan your space <span aria-hidden="true">↗</span></a>
+</div>
 <main>
  <section class="contact-hero">
   <div class="hero-overlay"></div>
