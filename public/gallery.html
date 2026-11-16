@@ -60,172 +60,84 @@
     </div>
 
     <!-- Gallery Section -->
-    <section class="gallery-section">
-        <div class="section-container">
-            <h2 class="section-title">Our Project Gallery</h2>
-            <p class="section-subtitle">Explore our premium residential, commercial, and hardscape transformations</p>
-            
-            <!-- Filter Buttons -->
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="residential">Residential</button>
-                <button class="filter-btn" data-filter="commercial">Commercial</button>
-                <button class="filter-btn" data-filter="hardscape">Hardscape</button>
-            </div>
+    <section class="gallery-section" id="projects">
+  <div class="gallery-intro">
+    <span class="gallery-eyebrow"><i class="fa-solid fa-leaf"></i> PAN-CIVIL LANDSCAPERS PORTFOLIO</span>
+    <h1>Outdoor spaces,<br><em>beautifully brought to life.</em></h1>
+    <p>Explore the details that make a compound feel complete — healthy lawns, thoughtful planting, welcoming walkways and beautifully finished outdoor spaces.</p>
+    <div class="gallery-stats" aria-label="Our landscaping services">
+      <div><strong>01</strong><span>Landscape design</span></div>
+      <div><strong>02</strong><span>Garden care</span></div>
+      <div><strong>03</strong><span>Hardscaping</span></div>
+    </div>
+  </div>
+  <div class="gallery-content">
+    <div class="gallery-toolbar">
+      <div><span class="gallery-eyebrow">OUR WORK</span><h2>Compound inspiration</h2></div>
+      <p>Outdoor projects and landscaping details</p>
+    </div>
+    <div class="filter-buttons" role="group" aria-label="Filter projects">
+      <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All projects <span>09</span></button>
+      <button class="filter-btn" type="button" data-filter="lawns" aria-pressed="false">Lawns & gardens</button>
+      <button class="filter-btn" type="button" data-filter="hardscape" aria-pressed="false">Paving & paths</button>
+      <button class="filter-btn" type="button" data-filter="planting" aria-pressed="false">Planting</button>
+    </div>
+    <div class="gallery-grid">
+      <article class="gallery-item gallery-featured" data-category="lawns">
+        <button class="gallery-img-wrapper" type="button" aria-label="View landscaped lawn and garden">
+          <img src="https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1400&q=88" alt="Neatly maintained outdoor lawn and landscaped garden" loading="lazy">
+          <span class="gallery-view"><i class="fa-solid fa-expand"></i> View project</span>
+        </button>
+        <div class="gallery-card-copy"><span>LAWNS & GARDENS</span><h3>A welcoming green compound</h3><p>Fresh lawn care and a tidy garden finish for everyday outdoor living.</p></div>
+      </article>
+      <article class="gallery-item" data-category="hardscape">
+        <button class="gallery-img-wrapper" type="button" aria-label="View outdoor patio and hardscape">
+          <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1100&q=88" alt="Outdoor garden patio with stone landscaping details" loading="lazy">
+          <span class="gallery-view"><i class="fa-solid fa-expand"></i> View project</span>
+        </button>
+        <div class="gallery-card-copy"><span>PAVING & PATHS</span><h3>Outdoor patio details</h3><p>Hardscape surfaces that bring structure and function to the compound.</p></div>
+      </article>
+      <article class="gallery-item" data-category="planting">
+        <button class="gallery-img-wrapper" type="button" aria-label="View garden planting">
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1100&q=88" alt="Outdoor garden plants and carefully arranged greenery" loading="lazy">
+          <span class="gallery-view"><i class="fa-solid fa-expand"></i> View project</span>
+        </button>
+        <div class="gallery-card-copy"><span>PLANTING</span><h3>Greenery with purpose</h3><p>Planting and garden arrangements that add texture and natural colour.</p></div>
+      </article>
+      <article class="gallery-item" data-category="planting">
+        <button class="gallery-img-wrapper" type="button" aria-label="View lush outdoor planting">
+          <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1100&q=88" alt="Outdoor foliage and garden planting" loading="lazy">
+          <span class="gallery-view"><i class="fa-solid fa-expand"></i> View project</span>
+        </button>
+        <div class="gallery-card-copy"><span>PLANTING</span><h3>Layered garden beds</h3><p>Plant combinations that soften outdoor spaces and define garden edges.</p></div>
+      </article>
+      <article class="gallery-item" data-category="lawns">
+        <button class="gallery-img-wrapper" type="button" aria-label="View maintained garden space">
+          <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1100&q=88" alt="Outdoor landscaping and garden maintenance" loading="lazy">
+          <span class="gallery-view"><i class="fa-solid fa-expand"></i> View project</span>
+        </button>
+        <div class="gallery-card-copy"><span>LAWN & GARDEN CARE</span><h3>Neat, cared-for grounds</h3><p>Regular attention keeps outdoor spaces healthy, clean and inviting.</p></div>
+      </article>
+      <article class="gallery-item" data-category="planting">
+        <button class="gallery-img-wrapper" type="button" aria-label="View tropical garden planting">
+          <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1100&q=88" alt="Green foliage and tropical garden plants outdoors" loading="lazy">
+          <span class="gallery-view"><i class="fa-solid fa-expand"></i> View project</span>
+        </button>
+        <div class="gallery-card-copy"><span>PLANTING</span><h3>Fresh tropical greenery</h3><p>Natural foliage brings depth, shade and life to a landscaped compound.</p></div>
+      </article>
+    </div>
+    <div class="gallery-note"><i class="fa-solid fa-circle-info"></i><p>These images illustrate the outdoor landscaping styles and services we offer. Ask our team about a design for your own compound.</p></div>
+  </div>
+  <section class="gallery-cta">
+    <div><span class="gallery-eyebrow">HAVE A PROJECT IN MIND?</span><h2>Let's shape your outdoor space.</h2><p>Tell us about your compound and what you would like to improve.</p></div>
+    <a href="contact.html">Request a site assessment <i class="fa-solid fa-arrow-right"></i></a>
+  </section>
+</section>
 
-            <!-- Gallery Grid (All 12 Items properly nested) -->
-            <div class="gallery-grid">
-                <!-- Item 1 -->
-                <div class="gallery-item" data-category="residential">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=1000&q=85" alt="Modern Suburban Lawn">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Residential</span>
-                            <h3>Modern Suburban Lawn</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="gallery-item" data-category="hardscape">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1000&q=85" alt="Custom Stone Patio">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Hardscape</span>
-                            <h3>Custom Stone Patio</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="gallery-item" data-category="commercial">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1000&q=85" alt="Corporate Office Greenery">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Commercial</span>
-                            <h3>Corporate Plaza Gardens</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="gallery-item" data-category="hardscape">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1000&q=85" alt="Retaining Wall and Walkway">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Hardscape</span>
-                            <h3>Engineered Walkway</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 5 -->
-                <div class="gallery-item" data-category="residential">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85" alt="Luxury Estate Gardens">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Residential</span>
-                            <h3>Luxury Estate Gardens</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 6 -->
-                <div class="gallery-item" data-category="hardscape">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85" alt="Land Formation">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Hardscape</span>  
-                            <h3>Land Levelling</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 7 -->
-                <div class="gallery-item" data-category="commercial">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=85" alt="Gardens Maintenance">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Commercial</span>
-                            <h3>Gardens Maintenance</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 8 -->
-                <div class="gallery-item" data-category="commercial">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1599685315640-7ec5e5e6f4f5?auto=format&fit=crop&w=1000&q=85" alt="Flower and Tree Planting">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Commercial</span>
-                            <h3>Flower and Tree Planting</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 9 -->
-                <div class="gallery-item" data-category="commercial">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1598300056393-4aac492f4344?auto=format&fit=crop&w=1000&q=85" alt="Garden Planning & Planting">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Commercial</span>
-                            <h3>Garden Planning & Planting</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 10 -->
-                <div class="gallery-item" data-category="commercial">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1000&q=85" alt="Tree Care & Professional Lopping">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Commercial</span>
-                            <h3>Tree Care & Professional Lopping</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 11 -->
-                <div class="gallery-item" data-category="hardscape">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1000&q=85" alt="Grass Planting">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Hardscape</span>
-                            <h3>Grass Planting</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 12 -->
-                <div class="gallery-item" data-category="hardscape">
-                    <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1000&q=85" alt="Soil enrichment">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Hardscape</span>
-                            <h3>Soil enrichment</h3>
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- End of Gallery Grid -->
-        </div>
-    </section>
-
-    <!-- Lightbox Modal Setup -->
-    <div id="gallery-lightbox" class="lightbox">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-content" id="lightbox-img" src="" alt="Enlarged view">
+<!-- Lightbox Modal Setup -->
+    <div id="gallery-lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Project image viewer">
+        <button type="button" class="close-lightbox" aria-label="Close image viewer">&times;</button>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Outdoor landscaping project enlarged">
         <div id="lightbox-caption"></div>
     </div>
     <!-- Professional Contact Page Footer -->
