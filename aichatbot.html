@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="aichatbot.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style id="pan-civil-marquee-styles">
-.pan-civil-marquee{position:sticky;top:0;z-index:1000;width:100%;isolation:isolate;display:flex;align-items:center;gap:18px;min-height:54px;padding:0 clamp(16px,4vw,56px);overflow:hidden;color:#f5fff8;background:linear-gradient(105deg,#10251d 0%,#173b2b 55%,#0d2920 100%);border-bottom:1px solid rgba(177,255,198,.2);font-family:inherit}
+.pan-civil-sticky-shell{position:sticky;top:0;z-index:1000;width:100%}
+.pan-civil-marquee{position:relative;width:100%;isolation:isolate;display:flex;align-items:center;gap:18px;min-height:54px;padding:0 clamp(16px,4vw,56px);overflow:hidden;color:#f5fff8;background:linear-gradient(105deg,#10251d 0%,#173b2b 55%,#0d2920 100%);border-bottom:1px solid rgba(177,255,198,.2);font-family:inherit}
 .pan-civil-marquee:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 18% 50%,rgba(120,226,147,.2),transparent 42%),linear-gradient(90deg,rgba(255,255,255,.035),transparent 45%,rgba(255,255,255,.025))}
 .pan-civil-marquee__tag{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid rgba(190,255,205,.28);border-radius:999px;background:rgba(161,244,178,.12);color:#c9ffd3;font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
 .pan-civil-marquee__dot{width:7px;height:7px;border-radius:50%;background:#a5f2a8;box-shadow:0 0 12px #a5f2a8}
@@ -26,7 +27,8 @@
 </style>
 </head>
 <body>
-  <header class="main-header">
+  <div class="pan-civil-sticky-shell">
+<header class="main-header">
     <div class="header-container">
       <a class="brand-title" href="index.html" aria-label="PAN-CIVIL Landscapers home" style="display:flex;align-items:center;gap:12px;text-decoration:none;"><img src="pancivil.png" alt="PAN-CIVIL Landscapers logo" style="width:58px;height:58px;object-fit:contain;"> <span>PAN-CIVIL <span class="accent-text">LANDSCAPERS</span></span></a>
       <nav class="nav-menu" aria-label="Main navigation">
@@ -46,7 +48,8 @@
   </div>
   <a class="pan-civil-marquee__cta" href="contact.html">Let's plan your space <span aria-hidden="true">↗</span></a>
 </div>
-  <main>
+  </div>
+<main>
     <section class="chat-widget" aria-label="Pancivil chat assistant">
       <div id="chat-window" class="chat-window">
         <div class="chat-header">
