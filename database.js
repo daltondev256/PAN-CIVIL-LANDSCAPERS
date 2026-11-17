@@ -1,8 +1,23 @@
 const { Pool } = require('pg');
 
+function normalizeDatabaseUrl(value) {
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    const sslMode = (url.searchParams.get('sslmode') || '').toLowerCase();
+    // Preserve the driver's existing secure behavior while avoiding legacy-mode warnings.
+    if (['prefer', 'require', 'verify-ca'].includes(sslMode)) {
+      url.searchParams.set('sslmode', 'verify-full');
+    }
+    return url.toString();
+  } catch {
+    return value;
+  }
+}
+
 const pool = process.env.DATABASE_URL
   ? new Pool({
-      connectionString: process.env.DATABASE_URL,
+      connectionString: normalizeDatabaseUrl(process.env.DATABASE_URL),
       max: 5,
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 10000
