@@ -57,14 +57,24 @@
     <section class="chat-widget" aria-label="Pancivil chat assistant">
       <div id="chat-window" class="chat-window">
         <div class="chat-header">
-          <div class="chat-header-info">
-            <i class="fas fa-robot" aria-hidden="true"></i>
-            <div><h1>Pancivil Assistant</h1><span class="status-indicator">Online</span></div>
+          <div class="chat-header-brand">
+            <span class="assistant-avatar"><i class="fas fa-leaf" aria-hidden="true"></i></span>
+            <div class="chat-header-info">
+              <div class="assistant-eyebrow">PAN-CIVIL LANDSCAPERS</div>
+              <h1>Landscape Assistant</h1>
+              <span class="status-indicator"><span class="online-dot"></span> Ready to help you plan outdoors</span>
+            </div>
           </div>
-          <button type="button" id="chat-close-btn" class="chat-close-btn" aria-label="Minimize chat">&times;</button>
+          <a class="header-contact-link" href="contact.html"><i class="fas fa-phone-alt" aria-hidden="true"></i> Contact our team</a>
         </div>
         <div id="chat-body" class="chat-body" aria-live="polite">
-          <div class="chat-message bot">Hello! Welcome to PAN-CIVIL LANDSCAPERS. I can help you explore outdoor landscaping, lawn care, planting, irrigation and compound improvements. What would you like to plan?</div>
+          <div class="welcome-panel">
+            <div class="welcome-icon"><i class="fas fa-seedling" aria-hidden="true"></i></div>
+            <div class="welcome-kicker">LET'S GROW SOMETHING BEAUTIFUL</div>
+            <h2>Your outdoor space, thoughtfully transformed.</h2>
+            <p>Tell us what you have in mind. I can help you explore garden ideas, lawn care, planting, irrigation, paving and compound design.</p>
+          </div>
+          <div class="chat-message bot">Hello! Welcome to PAN-CIVIL LANDSCAPERS. What would you like to improve in your outdoor space?</div>
         </div>
         <div class="chat-quick-actions">
           <button type="button" onclick="sendQuickReply('Get a Quote')">Get Quote</button>
