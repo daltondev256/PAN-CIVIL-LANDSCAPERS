@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | PANCIVIL LANDSCAPERS COMPANY LIMITED</title>
+    <meta name="robots" content="noindex,nofollow">
+    <title>Dashboard | PAN-CIVIL LANDSCAPERS</title>
     <!-- Google Fonts & FontAwesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,20 +36,15 @@
             </nav>
         </div>
 
-        <!-- Operational Marquee Ticker -->
-        <div class="ticker-wrap">
-            <div class="ticker">
-                <div class="ticker__item"><i class="fas fa-bell"></i> System Alert: 3 New Quote Inquiries Received</div>
-                <div class="ticker__item"><i class="fas fa-tasks"></i> Schedule: 5 Premium Lawn Maintenances Today</div>
-                <div class="ticker__item"><i class="fas fa-check-circle"></i> Update: Custom Hardscape Project Completed</div>
-                <div class="ticker__item"><i class="fas fa-exclamation-triangle"></i> Notice: Weather Alert for Seasonal Planting</div>
-                <!-- Duplicated for seamless loop -->
-                <div class="ticker__item"><i class="fas fa-bell"></i> System Alert: 3 New Quote Inquiries Received</div>
-                <div class="ticker__item"><i class="fas fa-tasks"></i> Schedule: 5 Premium Lawn Maintenances Today</div>
-                <div class="ticker__item"><i class="fas fa-check-circle"></i> Update: Custom Hardscape Project Completed</div>
-                <div class="ticker__item"><i class="fas fa-exclamation-triangle"></i> Notice: Weather Alert for Seasonal Planting</div>
-            </div>
+        <div class="pan-civil-marquee" role="region" aria-label="PAN-CIVIL service announcements">
+            <span class="pan-civil-marquee__tag"><i class="pan-civil-marquee__dot" aria-hidden="true"></i> Outdoor living, elevated</span>
+            <div class="pan-civil-marquee__viewport"><div class="pan-civil-marquee__track" aria-hidden="true">
+                <div class="pan-civil-marquee__group"><span>Landscape design</span><span>Lawn & garden care</span><span>Planting & greenery</span><span>Irrigation solutions</span><span>Hardscaping & paving</span><span>Free site assessment</span></div>
+                <div class="pan-civil-marquee__group"><span>Landscape design</span><span>Lawn & garden care</span><span>Planting & greenery</span><span>Irrigation solutions</span><span>Hardscaping & paving</span><span>Free site assessment</span></div>
+            </div></div>
+            <a class="pan-civil-marquee__cta" href="index.html">View website <span aria-hidden="true">↗</span></a>
         </div>
+
     </header>
 
     <!-- Main Dashboard Container Split -->
@@ -60,7 +56,7 @@
                 <h2>Control Panel</h2>
             </div>
             <ul class="sidebar-menu">
-                <li class="active" data-target="overview"><a href="index.html"><i class="fas fa-chart-line"></i> Overview</a></li>
+                <li class="active" data-target="overview"><a href="dashboard.html"><i class="fas fa-chart-line"></i> Overview</a></li>
                 <li data-target="projects"><a href="about.html"><i class="fas fa-question mark"></i>About Us</a></li>
                 <li data-target="schedules"><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact Us</a></li>
                 <li data-target="quotes"><a href="gallery.html"><i class="fas fa-images"></i> Our Portfolio</a></li>
@@ -76,37 +72,12 @@
             </div>
 
             <!-- Key Metric Row Card Summaries -->
-            <section class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-info">
-                        <h3>Active Projects</h3>
-                        <p>12</p>
-                    </div>
-                    <i class="fas fa-seedling metric-icon"></i>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-info">
-                        <h3>Pending Quotes</h3>
-                        <p>8</p>
-                    </div>
-                    <i class="fas fa-envelope-open-text metric-icon"></i>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-info">
-                        <h3>Lawn Bookings</h3>
-                        <p>34</p>
-                    </div>
-                    <i class="fas fa-cut metric-icon"></i>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-info">
-                        <h3>Completed Projects</h3>
-                        <p>148</p>
-                    </div>
-                    <i class="fas fa-check-double metric-icon"></i>
-                </div>
-            </section>
-            <!-- Inside your dashboard.html -->
+            <section class="metrics-grid" aria-label="Live dashboard statistics">
+                <div class="metric-card"><div class="metric-info"><h3>Client inquiries</h3><p id="metric-inquiries">—</p></div><i class="fas fa-inbox metric-icon"></i></div>
+                <div class="metric-card"><div class="metric-info"><h3>Quote requests</h3><p id="metric-quotes">—</p></div><i class="fas fa-file-invoice metric-icon"></i></div>
+                <div class="metric-card"><div class="metric-info"><h3>Received this month</h3><p id="metric-month">—</p></div><i class="fas fa-calendar-check metric-icon"></i></div>
+                <div class="metric-card"><div class="metric-info"><h3>Total records</h3><p id="metric-total">—</p></div><i class="fas fa-chart-line metric-icon"></i></div>
+            </section>            <!-- Inside your dashboard.html -->
 <section class="dashboard-container">
     <h2>Client Inquiries Dashboard</h2>
     <div class="table-responsive">
@@ -130,41 +101,10 @@
 
 
 
-            <!-- Comprehensive Summary Overview Table -->
             <section class="data-section">
-                <h3>Recent Project & Service Schedules</h3>
-                <table class="dashboard-table">
-                    <thead>
-                        <tr>
-                            <th>Client Name</th>
-                            <th>Service Type</th>
-                            <th>Scheduled Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Sarah M.</td>
-                            <td>Backyard Patio Hardscaping</td>
-                            <td>Aug 03, 2026</td>
-                            <td><span class="status-badge active">In Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td>David K. (Estate)</td>
-                            <td>Premium Lawn Maintenance</td>
-                            <td>Aug 05, 2026</td>
-                            <td><span class="status-badge pending">Scheduled</span></td>
-                        </tr>
-                        <tr>
-                            <td>John D.</td>
-                            <td>Vibrant Seasonal Planting</td>
-                            <td>Jul 28, 2026</td>
-                            <td><span class="status-badge completed">Completed</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </main>
+                <h3>Project scheduling</h3>
+                <p>Scheduling records are not currently stored in the dashboard. Customer enquiries and quote requests above are loaded directly from the connected database.</p>
+            </section>        </main>
     </div>
 
     <!-- Footer Section -->
@@ -182,6 +122,7 @@
                 </ul>
             </div>
         </div>
+        <div class="developer-credit" style="padding:12px 20px;text-align:center;font-size:13px;opacity:.82">Website developed by <strong>Daltondev256</strong> · <a href="mailto:daltondev256@gmail.com">daltondev256@gmail.com</a></div>
         <div class="copyright-bar">
             <p>&copy; <span id="current-year"></span> PANCIVIL LANDSCAPERS COMPANY LIMITED. All Rights Reserved.</p>
         </div>
