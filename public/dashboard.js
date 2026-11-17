@@ -54,8 +54,25 @@ async function loadDashboardData() {
         if (!inquiriesResponse.ok || !quotesResponse.ok) throw new Error('Unable to load dashboard records.');
         const inquiriesData = await inquiriesResponse.json();
         const quotesData = await quotesResponse.json();
+        const inquiries = inquiriesData.inquiries || [];
+        const quotes = quotesData.quotes || [];
+        const monthStart = new Date();
+        monthStart.setDate(1);
+        monthStart.setHours(0, 0, 0, 0);
+        const receivedThisMonth = [...inquiries, ...quotes].filter(item => {
+            const created = new Date(item.created_at);
+            return !Number.isNaN(created.getTime()) && created >= monthStart;
+        }).length;
+        const setMetric = (id, value) => {
+            const node = document.getElementById(id);
+            if (node) node.textContent = String(value);
+        };
+        setMetric('metric-inquiries', inquiries.length);
+        setMetric('metric-quotes', quotes.length);
+        setMetric('metric-month', receivedThisMonth);
+        setMetric('metric-total', inquiries.length + quotes.length);
 
-        for (const item of inquiriesData.inquiries || []) {
+        for (const item of inquiries) {
             const row = document.createElement('tr');
             const values = [
                 new Date(item.created_at).toLocaleString(), item.name, item.email,
@@ -68,7 +85,7 @@ async function loadDashboardData() {
             });
             tbody.appendChild(row);
         }
-        for (const item of quotesData.quotes || []) {
+        for (const item of quotes) {
             const row = document.createElement('tr');
             [new Date(item.created_at).toLocaleString(), item.client_name, '', item.phone,
              item.service_type, `Quote request — ${item.property_type || ''} ${item.preferred_date || ''}`]
