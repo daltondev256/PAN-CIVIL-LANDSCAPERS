@@ -373,3 +373,61 @@ main {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Let visitors scroll the assistant page itself */
+html {
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+body {
+  height: auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+main {
+  flex: 1 0 auto;
+  min-height: 0;
+}
+.chat-widget {
+  height: auto;
+  min-height: 0;
+}
+.chat-window {
+  height: auto;
+  min-height: calc(100vh - 38px);
+  min-height: calc(100dvh - 38px);
+  overflow: visible;
+}
+.chat-body {
+  flex: 1 0 auto;
+  min-height: 62vh;
+  overflow: visible;
+}
+.chat-window.minimized {
+  height: auto;
+}
+.chat-window.minimized .chat-body,
+.chat-window.minimized .chat-quick-actions,
+.chat-window.minimized .chat-footer {
+  display: flex;
+  height: auto;
+}
+.chat-quick-actions,
+.chat-footer {
+  position: relative;
+}
+.site-footer {
+  display: block;
+}
+@media (max-width: 700px) {
+  .chat-window {
+    min-height: calc(100dvh - 36px);
+  }
+  .chat-body {
+    min-height: 62vh;
+  }
+}
