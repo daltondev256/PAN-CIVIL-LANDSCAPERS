@@ -94,7 +94,7 @@ function hashPassword(password) {
   return new Promise((resolve, reject) => {
     crypto.scrypt(password, salt, 64, (error, key) => {
       if (error) return reject(error);
-      resolve(`scrypt${salt}${key.toString('hex')}`);
+      resolve(`scrypt$${salt}$${key.toString('hex')}`);
     });
   });
 }
