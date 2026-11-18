@@ -96,7 +96,7 @@ app.post('/api/customer/register', loginRateLimit, async (req, res) => {
   if (name.length > 160 || email.length > 254 || phone.length > 50 || password.length < 10 || password.length > 200) {
     return res.status(400).json({ error: 'Use a valid name and email, and a password between 10 and 200 characters.' });
   }
-  if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) return res.status(400).json({ error: 'Please enter a valid email address.' });
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'Please enter a valid email address.' });
   try {
     const passwordHash = await hashPassword(password);
     const created = await db.query('INSERT INTO customers (name, email, phone, password_hash) VALUES ($1, $2, $3, $4) ON CONFLICT (email) DO NOTHING RETURNING id, name, email, phone', [name, email, phone || null, passwordHash]);
