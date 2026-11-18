@@ -2,6 +2,12 @@ const express = require('express');
 const db = require('./database');
 const {
   clearSessionCookie,
+  clearCustomerSessionCookie,
+  createCustomerSession,
+  getCustomerSession,
+  hashPassword,
+  requireCustomer,
+  setCustomerSessionCookie,
   createSession,
   hashToken,
   requireAdmin,
@@ -79,6 +85,81 @@ app.post('/api/auth/logout', requireAdmin, async (req, res) => {
   }
 });
 
+
+const customerLoginAttempts = new Map();
+app.post('/api/customer/register', loginRateLimit, async (req, res) => {
+  const name = String(req.body.name || '').trim();
+  const email = String(req.body.email || '').trim().toLowerCase();
+  const phone = String(req.body.phone || '').trim();
+  const password = String(req.body.password || '');
+  if (!name || !email || !password) return res.status(400).json({ error: 'Name, email and password are required.' });
+  if (name.length > 160 || email.length > 254 || phone.length > 50 || password.length < 10 || password.length > 200) {
+    return res.status(400).json({ error: 'Use a valid name and email, and a password between 10 and 200 characters.' });
+  }
+  if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) return res.status(400).json({ error: 'Please enter a valid email address.' });
+  try {
+    const passwordHash = await hashPassword(password);
+    const created = await db.query('INSERT INTO customers (name, email, phone, password_hash) VALUES ($1, $2, $3, $4) ON CONFLICT (email) DO NOTHING RETURNING id, name, email, phone', [name, email, phone || null, passwordHash]);
+    if (!created.rows[0]) return res.status(409).json({ error: 'An account with this email already exists. Please sign in instead.' });
+    const token = await createCustomerSession(created.rows[0].id);
+    setCustomerSessionCookie(res, token);
+    return res.status(201).json({ customer: created.rows[0] });
+  } catch (error) {
+    console.error('Customer registration failed:', error);
+    return res.status(503).json({ error: 'Unable to create your account right now. Please try again later.' });
+  }
+});
+app.post('/api/customer/login', loginRateLimit, async (req, res) => {
+  const email = String(req.body.email || '').trim().toLowerCase();
+  const password = String(req.body.password || '');
+  try {
+    const result = await db.query('SELECT id, name, email, phone, password_hash FROM customers WHERE email = $1', [email]);
+    const customer = result.rows[0];
+    if (!customer || !(await verifyPassword(password, customer.password_hash))) return res.status(401).json({ error: 'Incorrect email or password.' });
+    const token = await createCustomerSession(customer.id);
+    setCustomerSessionCookie(res, token);
+    return res.json({ customer: { id: customer.id, name: customer.name, email: customer.email, phone: customer.phone } });
+  } catch (error) {
+    console.error('Customer login failed:', error);
+    return res.status(503).json({ error: 'Unable to sign in right now. Please try again later.' });
+  }
+});
+app.get('/api/customer/me', requireCustomer, (req, res) => res.json({ customer: { id: req.customer.id, name: req.customer.name, email: req.customer.email, phone: req.customer.phone } }));
+app.post('/api/customer/logout', requireCustomer, async (req, res) => {
+  try {
+    await db.query('DELETE FROM customer_sessions WHERE token_hash = $1', [hashToken(req.customer.token)]);
+    clearCustomerSessionCookie(res);
+    return res.json({ message: 'Signed out.' });
+  } catch (error) {
+    console.error('Customer logout failed:', error);
+    return res.status(503).json({ error: 'Unable to sign out right now.' });
+  }
+});
+app.get('/api/customer/records', requireCustomer, async (req, res) => {
+  try {
+    const [quotes, inquiries] = await Promise.all([
+      db.query('SELECT id, service_type, property_type, preferred_date, status, created_at FROM quotes WHERE customer_id = $1 ORDER BY created_at DESC LIMIT 100', [req.customer.id]),
+      db.query('SELECT id, message, created_at FROM inquiries WHERE customer_id = $1 ORDER BY created_at DESC LIMIT 100', [req.customer.id])
+    ]);
+    return res.json({ quotes: quotes.rows, inquiries: inquiries.rows });
+  } catch (error) {
+    console.error('Customer records query failed:', error);
+    return res.status(503).json({ error: 'Unable to load your account records right now.' });
+  }
+});
+app.patch('/api/customer/profile', requireCustomer, async (req, res) => {
+  const name = String(req.body.name || '').trim();
+  const phone = String(req.body.phone || '').trim();
+  if (!name || name.length > 160 || phone.length > 50) return res.status(400).json({ error: 'Please provide a valid name and phone number.' });
+  try {
+    const result = await db.query('UPDATE customers SET name = $1, phone = $2, updated_at = NOW() WHERE id = $3 RETURNING id, name, email, phone', [name, phone || null, req.customer.id]);
+    return res.json({ customer: result.rows[0] });
+  } catch (error) {
+    console.error('Customer profile update failed:', error);
+    return res.status(503).json({ error: 'Unable to update your profile right now.' });
+  }
+});
+
 app.post('/api/contact', async (req, res) => {
   const name = String(req.body.name || '').trim();
   const email = String(req.body.email || '').trim();
@@ -94,9 +175,10 @@ app.post('/api/contact', async (req, res) => {
     return res.status(400).json({ error: 'Please provide a valid email address.' });
   }
   try {
+    const customer = await getCustomerSession(req).catch(() => null);
     const result = await db.query(
-      'INSERT INTO inquiries (name, email, phone, message) VALUES ($1, $2, $3, $4) RETURNING id',
-      [name, email, phone || null, message]
+      'INSERT INTO inquiries (name, email, phone, message, customer_id) VALUES ($1, $2, $3, $4, $5) RETURNING id',
+      [name, email, phone || null, message, customer?.id || null]
     );
     return res.status(201).json({ message: 'Inquiry submitted successfully.', id: result.rows[0].id });
   } catch (error) {
@@ -119,9 +201,10 @@ app.post('/api/quotes', async (req, res) => {
     return res.status(400).json({ error: 'One or more fields are too long.' });
   }
   try {
+    const customer = await getCustomerSession(req).catch(() => null);
     const result = await db.query(
-      'INSERT INTO quotes (client_name, phone, service_type, property_type, preferred_date) VALUES ($1, $2, $3, $4, $5) RETURNING id',
-      [clientName, phone, serviceType, propertyType || null, preferredDate || null]
+      'INSERT INTO quotes (client_name, phone, service_type, property_type, preferred_date, customer_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
+      [clientName, phone, serviceType, propertyType || null, preferredDate || null, customer?.id || null]
     );
     return res.status(201).json({ message: 'Quote request submitted successfully.', id: result.rows[0].id });
   } catch (error) {
