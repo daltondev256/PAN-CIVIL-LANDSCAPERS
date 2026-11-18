@@ -87,8 +87,64 @@ async function requireAdmin(req, res, next) {
   }
 }
 
+
+const CUSTOMER_COOKIE_NAME = 'pancivil_customer_session';
+function hashPassword(password) {
+  const salt = crypto.randomBytes(16).toString('hex');
+  return new Promise((resolve, reject) => {
+    crypto.scrypt(password, salt, 64, (error, key) => {
+      if (error) return reject(error);
+      resolve(`scrypt${salt}${key.toString('hex')}`);
+    });
+  });
+}
+function setCustomerSessionCookie(res, token) {
+  const maxAge = SESSION_DAYS * 24 * 60 * 60;
+  res.append('Set-Cookie', `${CUSTOMER_COOKIE_NAME}=${encodeURIComponent(token)}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${maxAge}${isProduction ? '; Secure' : ''}`);
+}
+function clearCustomerSessionCookie(res) {
+  res.append('Set-Cookie', `${CUSTOMER_COOKIE_NAME}=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0${isProduction ? '; Secure' : ''}`);
+}
+async function createCustomerSession(customerId) {
+  const token = crypto.randomBytes(32).toString('hex');
+  const expiresAt = new Date(Date.now() + SESSION_DAYS * 86400000);
+  await db.query('INSERT INTO customer_sessions (token_hash, customer_id, expires_at) VALUES ($1, $2, $3)', [hashToken(token), customerId, expiresAt]);
+  return token;
+}
+async function getCustomerSession(req) {
+  const token = parseCookies(req.headers.cookie)[CUSTOMER_COOKIE_NAME];
+  if (!token || !/^[a-f0-9]{64}$/i.test(token)) return null;
+  const result = await db.query('SELECT c.id, c.name, c.email, c.phone, s.expires_at, s.token_hash FROM customer_sessions s JOIN customers c ON c.id = s.customer_id WHERE s.token_hash = $1', [hashToken(token)]);
+  const customer = result.rows[0];
+  if (!customer || new Date(customer.expires_at).getTime() <= Date.now()) {
+    if (customer) await db.query('DELETE FROM customer_sessions WHERE token_hash = $1', [hashToken(token)]);
+    return null;
+  }
+  return { id: customer.id, name: customer.name, email: customer.email, phone: customer.phone, token };
+}
+async function requireCustomer(req, res, next) {
+  try {
+    const customer = await getCustomerSession(req);
+    if (!customer) {
+      clearCustomerSessionCookie(res);
+      return res.status(401).json({ error: 'Please sign in to view your customer dashboard.' });
+    }
+    req.customer = customer;
+    return next();
+  } catch (error) {
+    console.error('Customer session verification failed:', error);
+    return res.status(503).json({ error: 'Customer account service is temporarily unavailable.' });
+  }
+}
+
 module.exports = {
   COOKIE_NAME,
+  clearCustomerSessionCookie,
+  createCustomerSession,
+  getCustomerSession,
+  hashPassword,
+  requireCustomer,
+  setCustomerSessionCookie,
   clearSessionCookie,
   createSession,
   hashToken,
