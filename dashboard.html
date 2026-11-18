@@ -75,37 +75,8 @@
                 <div class="date-display"><i class="fas fa-calendar"></i> <span id="dashboard-date">August 2026</span></div>
             </div>
 
-            <!-- Key Metric Row Card Summaries -->
-            <section class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-info">
-                        <h3>Active Projects</h3>
-                        <p>12</p>
-                    </div>
-                    <i class="fas fa-seedling metric-icon"></i>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-info">
-                        <h3>Pending Quotes</h3>
-                        <p>8</p>
-                    </div>
-                    <i class="fas fa-envelope-open-text metric-icon"></i>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-info">
-                        <h3>Lawn Bookings</h3>
-                        <p>34</p>
-                    </div>
-                    <i class="fas fa-cut metric-icon"></i>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-info">
-                        <h3>Completed Projects</h3>
-                        <p>148</p>
-                    </div>
-                    <i class="fas fa-check-double metric-icon"></i>
-                </div>
-            </section>
+            <!-- Metrics are populated only from verified live records. -->
+            <section class="metrics-grid" id="liveMetrics" aria-live="polite"></section>
             <!-- Inside your dashboard.html -->
 <section class="dashboard-container">
     <h2>Client Inquiries Dashboard</h2>
@@ -130,39 +101,9 @@
 
 
 
-            <!-- Comprehensive Summary Overview Table -->
             <section class="data-section">
-                <h3>Recent Project & Service Schedules</h3>
-                <table class="dashboard-table">
-                    <thead>
-                        <tr>
-                            <th>Client Name</th>
-                            <th>Service Type</th>
-                            <th>Scheduled Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Sarah M.</td>
-                            <td>Backyard Patio Hardscaping</td>
-                            <td>Aug 03, 2026</td>
-                            <td><span class="status-badge active">In Progress</span></td>
-                        </tr>
-                        <tr>
-                            <td>David K. (Estate)</td>
-                            <td>Premium Lawn Maintenance</td>
-                            <td>Aug 05, 2026</td>
-                            <td><span class="status-badge pending">Scheduled</span></td>
-                        </tr>
-                        <tr>
-                            <td>John D.</td>
-                            <td>Vibrant Seasonal Planting</td>
-                            <td>Jul 28, 2026</td>
-                            <td><span class="status-badge completed">Completed</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h3>Project schedules</h3>
+                <p>Project schedule records will appear here when connected to the live project-management data source.</p>
             </section>
         </main>
     </div>
