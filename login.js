@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
           password: password.value
         })
       });
-      const result = await response.json();
+      const result = await response.json().catch(() => ({ error: 'The server returned an unexpected response. Please try again.' }));
       if (!response.ok) throw new Error(result.error || 'Sign in failed.');
       window.location.replace('dashboard.html');
     } catch (error) {
