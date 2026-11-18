@@ -101,6 +101,9 @@ app.post('/api/customer/register', loginRateLimit, async (req, res) => {
     const passwordHash = await hashPassword(password);
     const created = await db.query('INSERT INTO customers (name, email, phone, password_hash) VALUES ($1, $2, $3, $4) ON CONFLICT (email) DO NOTHING RETURNING id, name, email, phone', [name, email, phone || null, passwordHash]);
     if (!created.rows[0]) return res.status(409).json({ error: 'An account with this email already exists. Please sign in instead.' });
+    // Attach earlier enquiries submitted with this email; match earlier quote requests only by the exact phone number supplied.
+    await db.query('UPDATE inquiries SET customer_id = $1 WHERE LOWER(email) = $2 AND customer_id IS NULL', [created.rows[0].id, email]);
+    if (phone) await db.query('UPDATE quotes SET customer_id = $1 WHERE phone = $2 AND customer_id IS NULL', [created.rows[0].id, phone]);
     const token = await createCustomerSession(created.rows[0].id);
     setCustomerSessionCookie(res, token);
     return res.status(201).json({ customer: created.rows[0] });
