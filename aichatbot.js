@@ -6,49 +6,73 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatBody = document.getElementById('chat-body');
   const chatForm = document.getElementById('chat-form');
   const sendButton = document.getElementById('chat-send-btn');
-  if (!chatWindow || !chatHeader || !chatInput || !chatBody) return;
+  if (!chatWindow || !chatHeader || !chatInput || !chatBody || !chatForm || !sendButton) return;
 
-  const knowledge = [
-    { words: ['quote', 'price', 'cost', 'estimate'], answer: "You can request a free estimate on our <a href='contact.html'>Get a Quote</a> page." },
-    { words: ['lawn', 'mow', 'cutting', 'maintenance'], answer: 'We offer weekly and bi-weekly lawn maintenance for residential and commercial spaces.' },
-    { words: ['hardscape', 'patio', 'walkway', 'construction'], answer: 'Our hardscape services include custom patios, retaining walls, paths and stone construction.' },
-    { words: ['plant', 'tree', 'garden', 'flowers'], answer: 'We provide seasonal planting and garden care suited to local conditions.' },
-    { words: ['contact', 'phone', 'email', 'reach'], answer: "Visit our <a href='contact.html'>Contact page</a> to reach our team." }
-  ];
+  const history = [];
+  let busy = false;
 
-  function appendMessage(message, sender, trustedHtml = false) {
+  function appendMessage(message, sender) {
     const item = document.createElement('div');
     item.className = 'chat-message ' + sender;
-    if (trustedHtml) item.innerHTML = message;
-    else item.textContent = message;
+    item.textContent = message;
     chatBody.appendChild(item);
     chatBody.scrollTop = chatBody.scrollHeight;
   }
 
-  function reply(message) {
-    const text = message.toLowerCase();
-    const found = knowledge.find(entry => entry.words.some(word => text.includes(word)));
-    const answer = found ? found.answer : "Thanks for your message. Please send your project details through our <a href='contact.html'>Contact page</a>.";
-    window.setTimeout(() => appendMessage(answer, 'bot', true), 350);
+  function setMinimized(minimized) {
+    chatWindow.classList.toggle('minimized', minimized);
+    if (closeButton) {
+      closeButton.textContent = minimized ? '+' : '×';
+      closeButton.setAttribute('aria-label', minimized ? 'Expand chat' : 'Minimize chat');
+    }
   }
 
-  function sendMessage(message = chatInput.value) {
+  async function sendMessage(message = chatInput.value) {
     const value = String(message || '').trim();
-    if (!value) return;
+    if (!value || busy) return;
     appendMessage(value, 'user');
+    history.push({ role: 'user', content: value.slice(0, 1500) });
     chatInput.value = '';
-    reply(value);
+    busy = true;
+    sendButton.disabled = true;
+    sendButton.setAttribute('aria-busy', 'true');
+    sendButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i>';
+
+    try {
+      const response = await fetch('/api/assistant/chat', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history.slice(-10) })
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.error || 'The assistant is temporarily unavailable. Please contact our team.');
+      }
+      const reply = typeof data.reply === 'string' ? data.reply.trim() : '';
+      if (!reply) throw new Error('The assistant returned an empty response. Please try again.');
+      appendMessage(reply, 'bot');
+      history.push({ role: 'assistant', content: reply.slice(0, 1500) });
+    } catch (error) {
+      appendMessage(error.message || 'I could not connect just now. Please use the Contact page or call our team.', 'bot');
+      history.pop();
+    } finally {
+      busy = false;
+      sendButton.disabled = false;
+      sendButton.removeAttribute('aria-busy');
+      sendButton.innerHTML = '<i class="fas fa-paper-plane" aria-hidden="true"></i>';
+      chatInput.focus();
+    }
   }
 
-  if (chatForm) chatForm.addEventListener('submit', event => {
+  chatForm.addEventListener('submit', event => {
     event.preventDefault();
     sendMessage();
   });
-  if (sendButton && !chatForm) sendButton.addEventListener('click', () => sendMessage());
-  chatHeader.addEventListener('click', () => {
-    chatWindow.classList.toggle('minimized');
-    if (closeButton) closeButton.textContent = chatWindow.classList.contains('minimized') ? '+' : '×';
+  chatHeader.addEventListener('click', () => setMinimized(!chatWindow.classList.contains('minimized')));
+  if (closeButton) closeButton.addEventListener('click', event => {
+    event.stopPropagation();
+    setMinimized(!chatWindow.classList.contains('minimized'));
   });
-  if (closeButton) closeButton.addEventListener('click', event => event.stopPropagation());
   window.sendQuickReply = sendMessage;
 });

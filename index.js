@@ -1,11 +1,1 @@
-// Vercel's Express framework entrypoint.
-// The browser-side script remains in public/index.js and is served with index.html.
-// Keep the Express app in server.js so local `npm start` continues to work.
-const express = require('express');
-const app = require('./server');
-
-if (typeof app !== 'function' || typeof express !== 'function') {
-  throw new Error('PAN-CIVIL Express application failed to initialize.');
-}
-
-module.exports = app;
+document.addEventListener('DOMContentLoaded',()=>{const year=document.getElementById('current-year');if(year)year.textContent=new Date().getFullYear();const toggle=document.querySelector('.menu-toggle');const nav=document.querySelector('.nav-menu');if(toggle&&nav)toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>'})});
